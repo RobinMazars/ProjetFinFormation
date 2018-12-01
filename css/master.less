@@ -1,45 +1,84 @@
 // out: master.css, sourcemap: true
+@primaryBackGroundColor: rgb(111, 93, 93);
+@borderRadiusMain: 10px;
+@borderMain: 1px solid black; ///mobile///////////////////////////////////
 
-@primaryBackGroundColor:rgb(111, 93, 93);
-@borderRadiusMain:10px;
-@borderMain: 1px solid black;
-
-body{
+body {
   width: 98%;
   margin: auto;
   text-align: center;
+  font-family: 'Oswald', sans-serif;
 }
-header{
+
+header {
   background: @primaryBackGroundColor;
-  border: @borderMain ;
+  border: @borderMain;
   border-radius: 0 0 @borderRadiusMain @borderRadiusMain;
-
 }
-nav {
-  flex: 8;
 
+nav {
   ul {
     list-style: none;
-    li{
 
-      a{
+    li {
+      a {
         text-decoration: none;
+        font-size: 1.5rem;
       }
     }
   }
 }
-section{
+h1{
+  font-size: 2rem;
+}
+h2{
+  font-size: 1.5rem;
+}
+p{
+  font-size: 1rem;
+}
+section {
   width: 90%;
   margin: 5px auto;
-  border: @borderMain ;
+  border: @borderMain;
   box-shadow: 0 0 15px;
   border-radius: @borderRadiusMain;
-
-
 }
-footer{
+
+footer {
   background: @primaryBackGroundColor;
-  border: @borderMain ;
-  border-radius:@borderRadiusMain @borderRadiusMain 0 0;
+  border: @borderMain;
+  border-radius: @borderRadiusMain @borderRadiusMain 0 0;
+}
+////////tablette////////////////////////
+@media (min-width: 780px) {
+  // * {
+  //   border: 1px red solid;
+  // }
+
+  nav {
+    ul {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+//////////computer/////////////////////////////
+@media (min-width: 1024px) {
+  // * {
+  //   border: 1px blue solid;
+  // }
+
+  header {
+    display: flex;
+    nav {
+      flex: 6;
+    }
+    img{
+      flex: 1;
+    }
+  }
+
+
 }
 /*# sourceMappingURL=master.css.map */

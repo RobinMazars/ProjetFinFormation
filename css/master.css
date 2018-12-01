@@ -2,20 +2,28 @@ body {
   width: 98%;
   margin: auto;
   text-align: center;
+  font-family: 'Oswald', sans-serif;
 }
 header {
   background: #6f5d5d;
   border: 1px solid black;
   border-radius: 0 0 10px 10px;
 }
-nav {
-  flex: 8;
-}
 nav ul {
   list-style: none;
 }
 nav ul li a {
   text-decoration: none;
+  font-size: 1.5rem;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+p {
+  font-size: 1rem;
 }
 section {
   width: 90%;
@@ -28,5 +36,22 @@ footer {
   background: #6f5d5d;
   border: 1px solid black;
   border-radius: 10px 10px 0 0;
+}
+@media (min-width: 780px) {
+  nav ul {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+  }
+  header nav {
+    flex: 6;
+  }
+  header img {
+    flex: 1;
+  }
 }
 /*# sourceMappingURL=master.css.map */
