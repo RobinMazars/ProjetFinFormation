@@ -1,0 +1,32 @@
+body {
+  width: 98%;
+  margin: auto;
+  text-align: center;
+}
+header {
+  background: #6f5d5d;
+  border: 1px solid black;
+  border-radius: 0 0 10px 10px;
+}
+nav {
+  flex: 8;
+}
+nav ul {
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+}
+section {
+  width: 90%;
+  margin: 5px auto;
+  border: 1px solid black;
+  box-shadow: 0 0 15px;
+  border-radius: 10px;
+}
+footer {
+  background: #6f5d5d;
+  border: 1px solid black;
+  border-radius: 10px 10px 0 0;
+}
+/*# sourceMappingURL=master.css.map */

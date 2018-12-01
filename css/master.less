@@ -1,0 +1,45 @@
+// out: master.css, sourcemap: true
+
+@primaryBackGroundColor:rgb(111, 93, 93);
+@borderRadiusMain:10px;
+@borderMain: 1px solid black;
+
+body{
+  width: 98%;
+  margin: auto;
+  text-align: center;
+}
+header{
+  background: @primaryBackGroundColor;
+  border: @borderMain ;
+  border-radius: 0 0 @borderRadiusMain @borderRadiusMain;
+
+}
+nav {
+  flex: 8;
+
+  ul {
+    list-style: none;
+    li{
+
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+}
+section{
+  width: 90%;
+  margin: 5px auto;
+  border: @borderMain ;
+  box-shadow: 0 0 15px;
+  border-radius: @borderRadiusMain;
+
+
+}
+footer{
+  background: @primaryBackGroundColor;
+  border: @borderMain ;
+  border-radius:@borderRadiusMain @borderRadiusMain 0 0;
+}
+/*# sourceMappingURL=master.css.map */
