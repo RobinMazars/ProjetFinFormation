@@ -17,24 +17,46 @@
 
   <?php include './inc/header.inc.php'; ?>
   <main>
-    <h1>Portfolio de MAZARS Robin</h1>
+    <h1>Portfolio de Mazars Robin web développeur</h1>
     <section>
       <h2>Présentation Générale:</h2>
       <h2>Situation Actuelle :</h2>
-
-
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
         aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </section>
     <section>
       <h2>Compétences(bar)</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h3>Language Informatique</h3>
+      <div class="Competence">
+        <?php // TODO: find bar on bootstrap or on net,Full CSS?>
+      <h4>HTML</h4>
+      <p>0%</p>
+      <h4>CSS</h4>
+      <p>0%</p>
+      <h4>JS</h4>
+      <p>0%</p>
+      <h4>PHP</h4>
+      <p>0%</p>
+      <h4>mySQL</h4>
+      <p>0%</p>
+      </div>
+      <h4>Java</h4>
+      <p>0%</p>
+      <h4>Python</h4>
+      <p>0%</p>
+      <h4>Symfony</h4>
+      <p>0%</p>
+      <h3>Autre Compétence</h3>
+      <p>Github</p>
     </section>
     <section>
       <h2>Réalisations</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <a href="#">Lien 1</a>
+      <a href="#">Lien 2</a>
+      <a href="#">Lien 3</a>
+      <a href="#">Lien 4</a>
+      <a href="#">Lien 5</a>
+      <a href="#">Lien 6</a>
     </section>
     <section>
       <h2>Parcours:(timeline)</h2>
