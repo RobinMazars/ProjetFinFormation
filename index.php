@@ -9,20 +9,9 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/master.css">
 </head>
-
 <body>
-  <header>
-    <img src="" alt="Logo">
-    <nav>
-      <ul>
-        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fas fa-folder-open"></i> Réalisations</a></li>
-        <li><a href="#"><i class="fas fa-file"></i> CV</a></li>
-        <li><a href="#"><i class="fas fa-envelope"></i> Me contacter</a></li>
-      </ul>
-    </nav>
 
-  </header>
+  <?php include './inc/header.inc.php'; ?>
   <main>
     <h1>Portfolio de MAZARS Robin</h1>
     <section>
@@ -62,16 +51,7 @@
         aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </section>
   </main>
-  <footer>
-    <nav>
-      <ul>
-        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fas fa-envelope"></i> Me contacter</a></li>
-      </ul>
-    </nav>
-    <small>Site Web créer par Mazars Robin</small>
-    <small>2018</small>
-  </footer>
+  <?php include './inc/footer.inc.php'; ?>
 </body>
 
 </html>
