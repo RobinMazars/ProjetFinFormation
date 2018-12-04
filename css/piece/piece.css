@@ -20,8 +20,8 @@
   width: 100%;
   text-align: center;
   transform-style: preserve-3d;
-  transform: srotateY(10deg);
-  -webkit-transform: rotateY(10deg);
+}
+#piece:hover {
   animation: rotate linear infinite reverse;
   animation-duration: 5s;
 }
@@ -30,6 +30,7 @@
   width: 100%;
   border-radius: 100%;
   position: absolute;
+  backface-visibility: hidden;
 }
 .corner {
   height: 282.84271247px;
@@ -38,30 +39,30 @@
   backface-visibility: hidden;
 }
 #corner1 {
-  background-image: linear-gradient(black, white);
+  background-image: linear-gradient(#aba407, gold);
   transform-origin: center;
   transform: translateX(50px) translateY(-50px) rotateY(270deg) rotateX(45deg);
 }
 #corner2 {
-  background-image: linear-gradient(black, white);
+  background-image: linear-gradient(#aba407, gold);
   transform: translateX(250px) translateY(-50px) rotateY(90deg) rotateX(45deg);
 }
 #corner3 {
-  background-image: linear-gradient(white, black);
+  background-image: linear-gradient(gold, #aba407);
   transform: translateX(250px) translateY(150px) rotateY(90deg) rotateX(-45deg);
 }
 #corner4 {
-  background-image: linear-gradient(white, black);
+  background-image: linear-gradient(gold, #aba407);
   transform: translateX(50px) translateY(150px) rotateY(270deg) rotateX(-45deg);
 }
 #piecePile {
-  background-color: #ff0000;
+  background-color: gold;
   -webkit-transform: translateZ(50px);
   transform: translateZ(50px);
 }
 #pieceFace {
   -webkit-transform: rotateY(180deg) translateZ(50px);
   transform: rotateY(180deg) translateZ(50px);
-  background-color: #007dff;
+  background-color: gold;
 }
 /*# sourceMappingURL=piece.css.map */
