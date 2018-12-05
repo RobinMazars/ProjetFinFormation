@@ -17,7 +17,7 @@
 
   <?php include './inc/header.inc.php'; ?>
   <main>
-    <h1>Portfolio de Mazars Robin web développeur</h1>
+    <h1>Portfolio de Mazars Robin Web développeur</h1>
     <section>
       <h2>Présentation Générale:</h2>
       <h2>Situation Actuelle :</h2>
@@ -52,7 +52,7 @@
     <section>
       <h2>Réalisations</h2>
       <a href="./programme/piece/piece.html">Piece full CSS</a>
-      <a href="#">Lien 2</a>
+      <a href="./programme/jsGame/jsGame.php">jsGame</a>
       <a href="#">Lien 3</a>
       <a href="#">Lien 4</a>
       <a href="#">Lien 5</a>
