@@ -22,6 +22,7 @@
       <canvas id="canvas" width="700" height="700">
 
       </canvas>
+      <input type="color" id="color" value="">
 
 
 

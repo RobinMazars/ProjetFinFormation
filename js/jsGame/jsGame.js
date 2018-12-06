@@ -5,6 +5,10 @@ $("#canvas").css('background', 'red');
 $("#canvas").mousedown(function(event) {
   mouseDown();
 });
+$("#color").change(function(event) {
+  console.log($(this).val())
+  canvas.pen.setColor($(this).val())
+});
 
 function mouseDown(){
   console.log('mousedown');
