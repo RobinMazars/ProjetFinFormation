@@ -2,6 +2,7 @@
   <img src="" alt="Logo">
   <nav>
     <ul>
+      //<?php // TODO: make nav auto ?>
       <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
       <li class="sousMenusTitle">
         <i class="fas fa-folder-open"></i> <a href="#">Réalisations</a>

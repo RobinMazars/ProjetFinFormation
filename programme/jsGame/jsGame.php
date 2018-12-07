@@ -22,12 +22,12 @@
       <canvas id="canvas" width="700" height="700">
 
       </canvas>
-      <input type="color" id="color" value="">
+      <input type="color" id="color" value="#000000">
 
 
 
     <?php include './../../inc/footer.inc.php'; ?>
     <script src="./../../js/jsGame/jsGame.js" charset="utf-8"></script>
-
+    <script src="./../../js/main.js" charset="utf-8"></script>
   </body>
 </html>
