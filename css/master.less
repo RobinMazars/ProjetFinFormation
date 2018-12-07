@@ -20,15 +20,38 @@ nav {
   ul {
     list-style: none;
     li {
+      font-size: 1.5rem;
+      padding:0 5px;
+      border-radius: @borderRadiusMain;
       a {
+        color: black;
         text-decoration: none;
-        font-size: 1.5rem;
         padding:0 5px;
         border-radius: @borderRadiusMain;
       }
     }
   }
 }
+.sousMenusListe{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  li{
+    border-radius:0;
+    background-color: blue;
+    border:@borderMain ;
+
+    margin: 0;
+
+    a{
+      color: white;
+    }
+
+
+  }
+}
+
 h1{
   font-size: 2rem;
 }
@@ -51,6 +74,7 @@ footer {
   border: @borderMain;
   border-radius: @borderRadiusMain @borderRadiusMain 0 0;
 }
+
 ////////tablette////////////////////////
 @media (min-width: 780px) {
   // * {

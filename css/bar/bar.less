@@ -1,0 +1,44 @@
+// out: bar.css, sourcemap: true
+
+
+@heightBar:20px;
+@colorBarEven:blue;
+@colorBarOdd:red;
+@colorBackground:lightgrey;
+@colorText:rgb(255, 255, 255);
+
+.bar {
+  width: 90%;
+  margin: auto;
+  background-color: @colorBackground;
+  height: @heightBar;
+}
+
+.textBar {
+  text-align: right;
+  margin-right: 15px;
+  color: @colorText;
+  position: relative;
+  height: @heightBar;
+}
+.effectBar.textBar:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: @heightBar solid @colorBackground;
+  width: 0;
+}
+.bar:nth-of-type(odd) .effectBar.textBar:before {
+  border-left: @heightBar solid @colorBarEven;
+}
+.bar:nth-of-type(odd) .textBar {
+  background-color: @colorBarEven;
+}
+.bar:nth-of-type(even) .textBar  {
+  background-color: @colorBarOdd;
+}
+.bar:nth-of-type(even) .effectBar.textBar:before {
+  border-left: @heightBar solid @colorBarOdd;
+}
+/*# sourceMappingURL=bar.css.map */

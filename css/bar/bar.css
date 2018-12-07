@@ -1,0 +1,34 @@
+.bar {
+  width: 90%;
+  margin: auto;
+  background-color: lightgrey;
+  height: 20px;
+}
+.textBar {
+  text-align: right;
+  margin-right: 15px;
+  color: #ffffff;
+  position: relative;
+  height: 20px;
+}
+.effectBar.textBar:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 20px solid lightgrey;
+  width: 0;
+}
+.bar:nth-of-type(odd) .effectBar.textBar:before {
+  border-left: 20px solid blue;
+}
+.bar:nth-of-type(odd) .textBar {
+  background-color: blue;
+}
+.bar:nth-of-type(even) .textBar {
+  background-color: red;
+}
+.bar:nth-of-type(even) .effectBar.textBar:before {
+  border-left: 20px solid red;
+}
+/*# sourceMappingURL=bar.css.map */
