@@ -4,11 +4,10 @@ $(".sousMenusListe").find(':first-child').css('border-radius', '10px 10px 0 0');
 $(".sousMenusListe").find(':last-child').css('border-radius', '0 0 10px 10px');
 $(".sousMenusListe").width(function () {
   var parent=$(this).parent();
-  var paddingParent=parseInt(parent.css('padding-left'));
-  var positionParentLeft=parent.offset().left;
-  console.log (positionParentLeft+2*paddingParent);
-  $(this).css("left",239)
-  $(this).width($(".sousMenusListe").parent().width()-paddingParent)
+  var paddingParentLeft=parseInt(parent.css('padding-left'));
+  var paddingParentRight=parseInt(parent.css('padding-right'));
+  var positionParentLeft=parent.offset();
+  $(this).width(parent.width()-paddingParentRight-paddingParentLeft)
 })
 //bind event/////////////////////
 $("nav ul li").hover(function() {
