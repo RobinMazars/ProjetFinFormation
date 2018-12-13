@@ -93,8 +93,7 @@
     </section>
   </main>
   <?php include './inc/footer.inc.php'; ?>
-  <script src="./js/bar/bar.js" charset="utf-8"></script>
-  <script src="./js/main.js" charset="utf-8"></script>
 </body>
-
+<script src="./js/bar/bar.js" charset="utf-8"></script>
+<script src="./js/main.js" charset="utf-8"></script>
 </html>

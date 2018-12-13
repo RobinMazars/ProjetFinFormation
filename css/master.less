@@ -1,17 +1,26 @@
 // out: master.css, sourcemap: true
-@primaryBackGroundColor: rgb(111, 93, 93);
+.primaryBackGroundColor{
+  background: rgb(245,246,246); /* Old browsers */
+  background: -moz-linear-gradient(left, rgba(245,246,246,1) 0%, rgba(219,220,226,1) 21%, rgba(196,199,211,1) 50%, rgba(221,223,227,1) 80%, rgba(245,246,246,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(196,199,211,1) 50%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(196,199,211,1) 50%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=1 ); /* IE6-9 */
+}
+
 @borderRadiusMain: 10px;
 @borderMain: 1px solid black; ///mobile///////////////////////////////////
+
 
 body {
   width: 98%;
   margin: auto;
   text-align: center;
   font-family: 'Oswald', sans-serif;
+  background-image: url("./../media/image/MaxPixel.freegreatpicture.com-Digital-Board-Interfaces-Circuits-Conductors-730793.jpg");
 }
 
 header {
-  background: @primaryBackGroundColor;
+  .primaryBackGroundColor;
   border: @borderMain;
   border-radius: 0 0 @borderRadiusMain @borderRadiusMain;
 }
@@ -54,6 +63,11 @@ nav {
 
 h1{
   font-size: 2rem;
+  background-color: white;
+  border-radius: @borderRadiusMain;
+  width: 50%;
+  margin: 15px auto;
+  border: @borderMain;
 }
 h2{
   font-size: 1.5rem;
@@ -64,13 +78,16 @@ p{
 section {
   width: 90%;
   margin: 15px auto;
+  padding: 5px ;
   border: @borderMain;
   box-shadow: 0 0 15px;
   border-radius: @borderRadiusMain;
+  background-color: white;
+
 }
 
 footer {
-  background: @primaryBackGroundColor;
+  .primaryBackGroundColor;
   border: @borderMain;
   border-radius: @borderRadiusMain @borderRadiusMain 0 0;
 }
