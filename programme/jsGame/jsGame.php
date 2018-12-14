@@ -18,6 +18,7 @@
   <!--  -->
 </head>
   <body>
+    <?php include './../../inc/http.inc.php'; ?>
     <?php include './../../inc/header.inc.php'; ?>
       <canvas id="canvas" width="700" height="700">
 

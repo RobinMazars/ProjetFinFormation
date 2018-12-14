@@ -2,12 +2,13 @@
   <img src="" alt="Logo">
   <nav>
     <ul>
-      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="<?=$RelativePath."/index.php"  ?>"><i class="fas fa-home"></i> Home</a></li>
       <li class="sousMenusTitle">
         <i class="fas fa-folder-open"></i> <a href="#">Réalisations</a>
         <ul class="sousMenusListe">
-          <li><a href="#">lien 1</a></li>
-          <li><a href="#">lien 2</a></li>
+          <li><a href="<?=$RelativePath."/programme/piece/piece.html"  ?>">Piece CSS</a></li>
+          <li><a href="<?=$RelativePath."/programme/jsGame/jsGame.php"  ?>">jsGame</a></li>
+
           <li><a href="#">lien 3</a></li>
         </ul>
 

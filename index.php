@@ -13,10 +13,9 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/bar/bar.css">
   <link rel="stylesheet" href="./css/master.css">
-
 </head>
 <body>
-
+  <?php include './inc/http.inc.php'; ?>
   <?php include './inc/header.inc.php'; ?>
   <main>
     <h1>Portfolio de Mazars Robin Web développeur</h1>
@@ -66,8 +65,8 @@
     </section>
     <section>
       <h2>Réalisations</h2>
-      <a href="./programme/piece/piece.html">Piece full CSS</a>
-      <a href="./programme/jsGame/jsGame.php">jsGame</a>
+      <a href="<?=$RelativePath."/programme/piece/piece.html" ?>">Piece full CSS</a>
+      <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">jsGame</a>
       <a href="#">Lien 3</a>
       <a href="#">Lien 4</a>
       <a href="#">Lien 5</a>
