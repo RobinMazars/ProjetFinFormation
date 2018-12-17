@@ -83,6 +83,10 @@ section {
   border-radius: 10px;
   background-color: white;
 }
+#lienRealisation {
+  display: flex;
+  flex-direction: column;
+}
 footer {
   background: #f5f6f6;
   /* Old browsers */
@@ -100,6 +104,10 @@ footer {
 @media (min-width: 780px) {
   nav ul {
     display: flex;
+    justify-content: space-around;
+  }
+  #lienRealisation {
+    flex-direction: row;
     justify-content: space-around;
   }
 }

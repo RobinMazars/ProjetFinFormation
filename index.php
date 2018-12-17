@@ -65,12 +65,14 @@
     </section>
     <section>
       <h2>Réalisations</h2>
-      <a href="<?=$RelativePath."/programme/piece/piece.html" ?>">Piece full CSS</a>
-      <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">jsGame</a>
-      <a href="#">Lien 3</a>
-      <a href="#">Lien 4</a>
-      <a href="#">Lien 5</a>
-      <a href="#">Lien 6</a>
+      <div id="lienRealisation">
+        <a href="<?=$RelativePath."/programme/piece/piece.html" ?>">Piece full CSS</a>
+        <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">jsGame</a>
+        <a href="#">Lien 3</a>
+        <a href="#">Lien 4</a>
+        <a href="#">Lien 5</a>
+        <a href="#">Lien 6</a>
+      </div>
     </section>
     <section>
       <h2>Parcours:(timeline)</h2>
@@ -91,6 +93,20 @@
         aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </section>
   </main>
+  <?php include './class/bdd.class.php'; ?>
+  <?php
+  $db=new Bdd();
+  $sql="SELECT * FROM `employees`";
+  $req=$db->retrieveData($sql);
+  foreach ($req as $key => $value) {
+    foreach ($value as $key2 => $value2) {
+      echo "<p>".$key2.":".$value2.'</p>';
+    }
+    echo "<p>".$key."</p>";
+
+  }
+  var_dump($req);
+  ?>
   <?php include './inc/footer.inc.php'; ?>
 </body>
 <script src="./js/bar/bar.js" charset="utf-8"></script>
