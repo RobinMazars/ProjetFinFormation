@@ -10,7 +10,7 @@ class Bdd
     private $_db;
     public function __construct()
     {
-      require_once "config.php";
+      require_once "../../config.php";
         try {
             $this->_db = new PDO($nameDb, $nameUser, $password);
             $this->_db->query("SET NAMES UTF8");
@@ -23,7 +23,7 @@ class Bdd
         // var_dump ($this->_db);
         return $this->_db;
     }
-    public function retrieveData($sql)
+    public function retrieveData(string $sql)
     {
         $data=$this->_db->prepare($sql);
         $data->execute();

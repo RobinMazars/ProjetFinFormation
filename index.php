@@ -93,20 +93,6 @@
         aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </section>
   </main>
-  <?php include './class/bdd.class.php'; ?>
-  <?php
-  $db=new Bdd();
-  $sql="SELECT * FROM `employees`";
-  $req=$db->retrieveData($sql);
-  foreach ($req as $key => $value) {
-    foreach ($value as $key2 => $value2) {
-      echo "<p>".$key2.":".$value2.'</p>';
-    }
-    echo "<p>".$key."</p>";
-
-  }
-  var_dump($req);
-  ?>
   <?php include './inc/footer.inc.php'; ?>
 </body>
 <script src="./js/bar/bar.js" charset="utf-8"></script>

@@ -9,7 +9,7 @@
           <li><a href="<?=$RelativePath."/programme/piece/piece.html"  ?>">Piece CSS</a></li>
           <li><a href="<?=$RelativePath."/programme/jsGame/jsGame.php"  ?>">jsGame</a></li>
 
-          <li><a href="#">lien 3</a></li>
+          <li><a href="<?=$RelativePath."/programme/BDD/BDD.php"  ?>">BDD</a></li>
         </ul>
 
       </li>
