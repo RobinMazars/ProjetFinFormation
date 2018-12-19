@@ -10,9 +10,12 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./../../css/Bdd/Bdd.css">
 
 <?php
+if (!isset($_GET['page'])) {
+  header('Location: BddController.php?page=1');
+}
  include './../../inc/http.inc.php';
  include './../../inc/header.inc.php';
-include './Bdd.model.php';
+ include './Bdd.model.php';
 
 
  include './Bdd.php';
@@ -23,9 +26,6 @@ include './Bdd.model.php';
  ?>
  <script src="./../../js/Bdd/Bdd.js" charset="utf-8"></script>
  <script type="text/javascript">
- <?php if ($_GET['page']) {
-   // code...
- } ?>
    setPagination(<?=$page?>)
  </script>
  <script src="./../../js/bar/bar.js" charset="utf-8"></script>
