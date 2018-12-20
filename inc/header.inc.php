@@ -6,7 +6,7 @@
       <li class="sousMenusTitle">
         <i class="fas fa-folder-open"></i> <a href="#">Réalisations</a>
         <ul class="sousMenusListe" >
-          <li><a href="<?=$RelativePath."/programme/piece/piece.html"  ?>">Piece CSS</a></li>
+          <li><a href="<?=$RelativePath."/programme/piece/piece.php"  ?>">Piece CSS</a></li>
           <li><a href="<?=$RelativePath."/programme/jsGame/jsGame.php"  ?>">jsGame</a></li>
 
           <li><a href="<?=$RelativePath."/programme/BDD/BddController.php"  ?>">BDD</a></li>

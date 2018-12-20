@@ -9,13 +9,19 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-  <link rel="stylesheet" href="./css/normalize.css">
-  <link rel="stylesheet" href="./css/bar/bar.css">
-  <link rel="stylesheet" href="./css/master.css">
+  <link rel="stylesheet" href="./../../css/normalize.css">
+  <link rel="stylesheet" href="./../../css/bar/bar.css">
+  <link rel="stylesheet" href="./../../css/master.css">
+  <link rel="stylesheet" href="./../../css/piece/piece.css">
+
 </head>
 <body>
-  <?php include './inc/http.inc.php'; ?>
-  <?php include './inc/header.inc.php'; ?>
-  <?php include './home/home.php'; ?>
-  <?php include './inc/footer.inc.php'; ?>
+<?php
+
+include './../../inc/http.inc.php';
+include './../../inc/header.inc.php';
+include 'piece.html';
+include './../../inc/footer.inc.php';
+
+ ?>
 </body>
