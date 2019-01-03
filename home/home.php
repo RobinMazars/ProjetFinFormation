@@ -49,7 +49,7 @@
     <div id="lienRealisation">
       <a href="<?=$RelativePath."/programme/piece/piece.html" ?>">Piece full CSS</a>
       <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">jsGame</a>
-      <a href="#">Lien 3</a>
+      <a href="<?=$RelativePath."/programme/Bdd/BddController.php"?>">Bdd</a>
       <a href="#">Lien 4</a>
       <a href="#">Lien 5</a>
       <a href="#">Lien 6</a>

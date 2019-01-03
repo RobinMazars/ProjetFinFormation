@@ -15,10 +15,10 @@ if (!isset($_GET['page'])) {
 }
  include './../../inc/http.inc.php';
  include './../../inc/header.inc.php';
- include './Bdd.model.php';
+ include './model/Bdd.model.php';
 
 
- include './Bdd.php';
+ include './view/Bdd.php';
  include './../../inc/footer.inc.php';
 
 

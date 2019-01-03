@@ -9,7 +9,7 @@
       <h2>Tableaux</h2>
     <?php if ($allProduct) {
     ?>
-      <?php include 'pagination.html'; ?>
+      <?php include 'view/pagination.html'; ?>
      <table>
          <th>Nom du produit</th>
          <th>Nom du fourniseur</th>
@@ -35,7 +35,7 @@
      <p>Pas de produit trouvé</p>
    <?php
     } ?>
-<?php include 'pagination.html'; ?>
+<?php include 'view/pagination.html'; ?>
 </section>
 <section>
 <h2>Informations suplémentaires</h2>
@@ -53,6 +53,9 @@
 </tbody>
 
 </table>
+</section>
+<section>
+  Explication
 </section>
   </body>
 </html>
