@@ -11,7 +11,7 @@ if (isset($_GET['page'])) {
 else {
   $page=1;
   $offset=0;
-  //// TODO: redirection vers ?page=0
+  //// TODO: redirection vers ?page=0 a faire dans le controller
 }
 $bdd=new Bdd();
 

@@ -10,6 +10,7 @@
           <li><a href="<?=$RelativePath."/programme/jsGame/jsGame.php"  ?>">jsGame</a></li>
 
           <li><a href="<?=$RelativePath."/programme/BDD/BddController.php"  ?>">BDD</a></li>
+          <li><a href="<?=$RelativePath."/programme/Tapis/TapisController.php"  ?>">Tapie</a></li>
         </ul>
 
       </li>
