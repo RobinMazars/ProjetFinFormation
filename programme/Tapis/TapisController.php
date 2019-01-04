@@ -17,5 +17,6 @@ include './../../inc/header.inc.php';
 include './view/tapis.php';
 include './../../inc/footer.inc.php';
 ?>
+<script src="./../../js/Tapis/Tapis.js" charset="utf-8"></script>
 <script src="./../../js/bar/bar.js" charset="utf-8"></script>
 <script src="./../../js/main.js" charset="utf-8"></script>
