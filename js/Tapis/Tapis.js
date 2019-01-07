@@ -26,8 +26,63 @@ function rngDir() {
 function rngAnim() {
   $("#circ-anim").remove()
   var rng=rngDir()
-  $("#svg").append('<animate xlink:href="#orange-circle" attributeName='+rng['dir']+'  to='+rng['dist']+'  dur="1s" fill="freeze" id="circ-anim"/> ')
+  $("#svg").append('<animate xlink:href="#tapis-1" attributeName='+rng['dir']+'  to='+rng['dist']+'  dur="1s" fill="freeze" /> ')
   $("#frame").html($("#frame").html());
 }
+
+//init bind
 $("#start").click(rngAnim);
 $("#stop").click(unAnim);
+
+
+
+//first get script pour include util.js qui contient le multi include
+$.getScript( "./../../js/Tapis/jsClass/util.js", function() {
+//liste des class a include
+  var script_arr = [
+      'AbstractObject.class.js',
+      'Tapis.class.js',
+      'Manipulator.class.js'
+
+  ];
+  $.getMultiScripts(script_arr,"./../../js/Tapis/jsClass/").done(function() {
+    //code
+    //init def
+    function test() {
+      console.log('test');
+    }
+    var listeClass =[Tapis]
+    for (var i = 0; i < listeClass.length; i++) {
+
+      var def = listeClass[i].getDef()
+      $("#svg").prepend(def)
+      refresh()
+    }
+    var pos={'x':'50','y':'50'}
+    var pos2={'x':'150','y':'150'}
+    var h= new Tapis(pos);
+    var h2= new Tapis(pos2);
+    manipulator=new Manipulator()
+    manipulator.placeObject(h)
+    manipulator.placeObject(h2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+
+
+
+
+
+
+});

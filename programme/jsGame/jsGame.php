@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="./../../css/normalize.css">
   <link rel="stylesheet" href="./../../css/master.css">
   <!--class-->
-  <script src="./../../js/jsClass/circle.class.js" charset="utf-8"></script>
-  <script src="./../../js/jsClass/canvas.class.js" charset="utf-8"></script>
-  <script src="./../../js/jsClass/pen.class.js" charset="utf-8"></script>
+  <script src="./../../js/jsGame/jsClass/circle.class.js" charset="utf-8"></script>
+  <script src="./../../js/jsGame/jsClass/canvas.class.js" charset="utf-8"></script>
+  <script src="./../../js/jsGame/jsClass/pen.class.js" charset="utf-8"></script>
   <!--  -->
 </head>
   <body>
