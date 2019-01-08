@@ -15,3 +15,6 @@ console.log("util.js");
 function refresh() {
  $("#frame").html($("#frame").html());
 }
+function rand(min,max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}

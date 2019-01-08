@@ -1,15 +1,13 @@
 //il faut refresh la div container pour start l'animation,pas de besoin pour l'arreter
 function anim(){
-  $("#svg").append('<animate xlink:href="#orange-circle" attributeName="x" from="50" to="450"  dur="1s"  values="50; 490; 150; 450"  keyTimes="0; 0.7; 0.8; 1" fill="freeze" id="circ-anim"/> ')
-  $("#frame").html($("#frame").html());
+  manipulator.animAll()
+  manipulator.moveAll()
 }
 
-function unAnim() {
-  $("#circ-anim").remove()
-  //$("#frame").html($("#frame").html());
-}
-function rand(min,max) {
-  return Math.floor(Math.random()*(max-min+1)+min);
+function anim2(){
+  $(".animation2").remove()
+  $("#svg").append('<animate xlink:href="#arrow" attributeName="y"  to="-1"  dur="0.5s" fill="freeze" class="animation2" /> ')
+  refresh()
 }
 function rngDir() {
   var dir=rand(0,1);
@@ -24,15 +22,15 @@ function rngDir() {
   return {dir:dir,dist:dist}
 }
 function rngAnim() {
-  $("#circ-anim").remove()
+  $("#rngAnim").remove()
   var rng=rngDir()
-  $("#svg").append('<animate xlink:href="#tapis-1" attributeName='+rng['dir']+'  to='+rng['dist']+'  dur="1s" fill="freeze" /> ')
+  $("#svg").append('<animate xlink:href="#tapis-1" attributeName='+rng['dir']+'  to='+rng['dist']+'  dur="1s" fill="freeze" id="rngAnim" /> ')
   $("#frame").html($("#frame").html());
 }
 
 //init bind
-$("#start").click(rngAnim);
-$("#stop").click(unAnim);
+$("#start").click(anim);
+$("#stop").click(anim2);
 
 
 
@@ -41,30 +39,35 @@ $.getScript( "./../../js/Tapis/jsClass/util.js", function() {
 //liste des class a include
   var script_arr = [
       'AbstractObject.class.js',
+      'Position.class.js',
       'Tapis.class.js',
-      'Manipulator.class.js'
+      'Ore.class.js',
+      'Manipulator.class.js',
+      'Grille.class.js'
 
   ];
   $.getMultiScripts(script_arr,"./../../js/Tapis/jsClass/").done(function() {
     //code
     //init def
-    function test() {
-      console.log('test');
-    }
-    var listeClass =[Tapis]
-    for (var i = 0; i < listeClass.length; i++) {
+    grille= new Grille()
+    var listeClass =[Tapis,Ore];
+    manipulator=new Manipulator();
+    manipulator.setListeClass(listeClass);
+    manipulator.placeDef();
 
-      var def = listeClass[i].getDef()
-      $("#svg").prepend(def)
-      refresh()
-    }
-    var pos={'x':'50','y':'50'}
-    var pos2={'x':'150','y':'150'}
-    var h= new Tapis(pos);
+    var pos1=new Position(0,0,0)
+    var pos2=new Position(100,100,1)
+    var pos3=new Position(150,150,0)
+
+    var h= new Tapis(pos1);
     var h2= new Tapis(pos2);
-    manipulator=new Manipulator()
-    manipulator.placeObject(h)
-    manipulator.placeObject(h2)
+    var h3= new Ore(pos3);
+
+    manipulator.addObject(h)
+    manipulator.addObject(h2)
+    manipulator.addObject(h3)
+
+    manipulator.placeAll()
 
 
 

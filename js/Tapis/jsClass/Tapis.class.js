@@ -2,29 +2,24 @@ console.log('class tapis load');
 class Tapis extends AbstractObject {
   constructor(pos) {
     super(pos)
-    this.idMyself()
-    this.setSvg(pos)
   }
-  static getDef() {
-    var def = super.getDef('blue')
-    return def;
+  /**
+   * creation of the image definition.One by class
+   * @return {[type]} [description]
+   */
+  static def() {
+    return super.def('blue','tapis','5,0 10,3 7,3 7,10 3,10 3,3 0,3','50%','100%')
   }
-  idMyself() {
-    if (Tapis.id == undefined) {
-      Tapis.id = 1;
-    } else {
-      Tapis.id++;
-    }
-    console.log(Tapis.id);
+  setSvg(){
+    super.setSvg('tapis')
   }
-  aff2() {
-    console.log('pos=' + this.pos);
+  static getAnimation(){
+    var animation='<animate xlink:href="#tapis" attributeName="y"  to="-1"  dur="0.5s" fill="freeze" class="animation tapis" /> ';
+    return animation;
   }
-  setSvg(pos) {
 
-    this.svg = '<rect id="tapis-'+Tapis.id+'" width="100" height="100" x=' + pos.x + '  y=' + pos.y + ' fill="url(#star2)"/>'
+  static aff(){
+    console.log('tapis aff');
   }
-  getSvg() {
-    return this.svg
-  }
+
 }
