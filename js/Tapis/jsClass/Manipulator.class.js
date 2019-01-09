@@ -3,15 +3,57 @@ class Manipulator {
   constructor() {
     this.listeObject = [];
     this.listeClass = [];
+    this.grille=new Grille();
+    this.bindOnCLick()
   }
+  getPosMouse(e) {
+        var container =document.getElementById('frame')
+        var offset = container.getBoundingClientRect();
+        var styles = window.getComputedStyle(container);
+        var cursorX = e.clientX - offset.left - parseInt(styles.borderLeftWidth);
+        var cursorY = e.clientY - offset.top - parseInt(styles.borderTopWidth);
+        console.log(cursorX,cursorY);
+        return {
+          x: cursorX,
+          y: cursorY
+        }
+      }
+  bindOnCLick() {
+    var manipulator=this // HACK:
+    $("#frame").click(function(event) {
+      console.log("bind");
+      manipulator.onClick(event)
+    });
+  }
+  onClick(event){
+    var posMouse = this.getPosMouse(event);
+    this.calcPos(posMouse)
+  }
+  calcPos(posMouse){
 
-  placeObject(object) {
+    var x=Math.floor(posMouse.x / this.grille.caseWidth);
+    var y=Math.floor(posMouse.y / this.grille.caseHeight);
+    x=x*this.grille.caseWidth
+    y=y*this.grille.caseHeight
+
+    var direction='0'
+    var pos= new Position(x.toString(),y.toString(),direction);
+    console.log(pos);
+    this.placeObject(Tapis,pos)
+  }
+  placeObject(type,pos){
+    var object =new type(pos)
+    console.log(object);
+    this.writeObject(object)
+    refresh()
+  }
+  writeObject(object) {
     var svg = object.getSvg();
     $("#svg").append(svg);
   }
-  placeAll() {
+  writeAll() {
     for (var i = 0; i < this.listeObject.length; i++) {
-      this.placeObject(this.listeObject[i]);
+      this.writeObject(this.listeObject[i]);
     }
     refresh();
   }
@@ -41,7 +83,7 @@ class Manipulator {
   setListeClass(listeClass) {
     this.listeClass = listeClass;
   }
-  placeDef() {
+  writeDef() {
     for (var i = 0; i < this.listeClass.length; i++) {
       var def = this.listeClass[i].def()
       $("#svg").prepend(def)

@@ -3,7 +3,18 @@ function anim(){
   manipulator.animAll()
   manipulator.moveAll()
 }
-
+function getPos(e) {
+      var container = $("#svg")
+      var offset = container.getBoundingClientRect();
+      var styles = window.getComputedStyle(container);
+      var cursorX = e.clientX - offset.left - parseInt(styles.borderLeftWidth);
+      var cursorY = e.clientY - offset.top - parseInt(styles.borderTopWidth);
+      console.log(cursorX,cursorY);
+      // return {
+      //   x: cursorX,
+      //   y: cursorY
+      // }
+    }
 function anim2(){
   $(".animation2").remove()
   $("#svg").append('<animate xlink:href="#arrow" attributeName="y"  to="-1"  dur="0.5s" fill="freeze" class="animation2" /> ')
@@ -27,11 +38,21 @@ function rngAnim() {
   $("#svg").append('<animate xlink:href="#tapis-1" attributeName='+rng['dir']+'  to='+rng['dist']+'  dur="1s" fill="freeze" id="rngAnim" /> ')
   $("#frame").html($("#frame").html());
 }
-
+function getPos(e) {
+      var container =document.getElementById('frame')
+      var offset = container.getBoundingClientRect();
+      var styles = window.getComputedStyle(container);
+      var cursorX = e.clientX - offset.left - parseInt(styles.borderLeftWidth);
+      var cursorY = e.clientY - offset.top - parseInt(styles.borderTopWidth);
+      console.log(cursorX,cursorY);
+      return {
+        x: cursorX,
+        y: cursorY
+      }
+    }
 //init bind
 $("#start").click(anim);
 $("#stop").click(anim2);
-
 
 
 //first get script pour include util.js qui contient le multi include
@@ -49,11 +70,10 @@ $.getScript( "./../../js/Tapis/jsClass/util.js", function() {
   $.getMultiScripts(script_arr,"./../../js/Tapis/jsClass/").done(function() {
     //code
     //init def
-    grille= new Grille()
     var listeClass =[Tapis,Ore];
     manipulator=new Manipulator();
     manipulator.setListeClass(listeClass);
-    manipulator.placeDef();
+    manipulator.writeDef();
 
     var pos1=new Position(0,0,0)
     var pos2=new Position(100,100,1)
@@ -67,7 +87,7 @@ $.getScript( "./../../js/Tapis/jsClass/util.js", function() {
     manipulator.addObject(h2)
     manipulator.addObject(h3)
 
-    manipulator.placeAll()
+    manipulator.writeAll()
 
 
 

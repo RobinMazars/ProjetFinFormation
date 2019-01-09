@@ -1,7 +1,7 @@
 <section>
   <h1>titre 1</h1>
   <div id="frame">
-    <svg id="svg" width="500" height="500">
+    <svg id="svg">
     </svg>
 
   </div>

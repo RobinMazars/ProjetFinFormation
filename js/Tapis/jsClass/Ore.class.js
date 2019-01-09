@@ -8,7 +8,7 @@ class Ore extends AbstractObject {
     console.log('ore aff');
   }
   static def() {
-    return super.def('rgba(0,0,0,0.9)', 'ore', '3,0 7,0 10,3 10,7 7,10 3,10 0,7 0,3')
+    return super.def('rgba(0,0,0,0.5)', 'ore', '3,0 7,0 10,3 10,7 7,10 3,10 0,7 0,3')
   }
   setSvg() {
     super.setSvg('ore')

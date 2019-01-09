@@ -47,7 +47,7 @@
   <section>
     <h2>Réalisations</h2>
     <div id="lienRealisation">
-      <a href="<?=$RelativePath."/programme/piece/piece.html" ?>">Piece full CSS</a>
+      <a href="<?=$RelativePath."/programme/piece/piece.php" ?>">Piece full CSS</a>
       <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">jsGame</a>
       <a href="<?=$RelativePath."/programme/Bdd/BddController.php"?>">Bdd</a>
       <a href="#">Lien 4</a>
