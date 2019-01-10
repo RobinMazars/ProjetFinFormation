@@ -10,6 +10,9 @@ class Tapis extends AbstractObject {
   static def() {
     return super.def('blue','tapis','5,0 10,3 7,3 7,10 3,10 3,3 0,3','50%','100%')
   }
+  static getClassName(){
+    return 'Tapis'
+  }
   setSvg(){
     super.setSvg('tapis')
   }

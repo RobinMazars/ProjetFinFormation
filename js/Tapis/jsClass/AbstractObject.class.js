@@ -20,15 +20,17 @@ class AbstractObject {
     } else {
       AbstractObject.id++;
     }
-    console.log(AbstractObject.id);
+    //console.log(AbstractObject.id);
     this.id = AbstractObject.id;
   }
-  setSvg(idDef) {
-    var width = '50';
-    var height = '50';
+  setSvg(idDef ) {
+    var width = 50;
+    var height = 50;
     var center = {}
-    center.x = this.pos.x + width / 2;
-    center.y = this.pos.y + height / 2;
+    //console.log(this.pos);
+    center.x = parseInt(this.pos.x) + width / 2;
+    center.y = parseInt(this.pos.y) + height / 2;
+    //console.log("center");
     center.string = center.x + ' ' + center.y;
     var angle = 90 * this.pos.direction;
     this.svg = '<rect id="object-' + this.getId() + '" width=' + width + ' height=' + height + ' x=' + this.pos.x + '  y=' + this.pos.y + ' fill="url(#' + idDef + ')"  transform-origin="' + center.string + '" transform="rotate(' + angle + ')"/>'

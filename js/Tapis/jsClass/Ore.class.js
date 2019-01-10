@@ -4,6 +4,9 @@ class Ore extends AbstractObject {
   constructor(pos) {
     super(pos)
   }
+  static getClassName(){
+    return 'Ore'
+  }
   static aff() {
     console.log('ore aff');
   }
@@ -14,7 +17,9 @@ class Ore extends AbstractObject {
     super.setSvg('ore')
   }
   getMove() {
-    var move='<animate xlink:href=#object-'+this.getId()+' attributeName="y"  to="400"  dur="0.5s" fill="freeze" class="animation tapis" /> ';
+    var posInit=this.pos.y;
+    var posFinal=(parseInt(posInit)+50).toString()
+    var move='<animate xlink:href=#object-'+this.getId()+' attributeName="y"  from ='+posInit+' to='+posFinal+'  dur="0.5s" fill="freeze" class="animation tapis" /> ';
     return move;
   }
 }

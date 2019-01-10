@@ -1,24 +1,10 @@
 //il faut refresh la div container pour start l'animation,pas de besoin pour l'arreter
 function anim(){
-  manipulator.animAll()
-  manipulator.moveAll()
+  manipulator.run()
+
 }
-function getPos(e) {
-      var container = $("#svg")
-      var offset = container.getBoundingClientRect();
-      var styles = window.getComputedStyle(container);
-      var cursorX = e.clientX - offset.left - parseInt(styles.borderLeftWidth);
-      var cursorY = e.clientY - offset.top - parseInt(styles.borderTopWidth);
-      console.log(cursorX,cursorY);
-      // return {
-      //   x: cursorX,
-      //   y: cursorY
-      // }
-    }
 function anim2(){
-  $(".animation2").remove()
-  $("#svg").append('<animate xlink:href="#arrow" attributeName="y"  to="-1"  dur="0.5s" fill="freeze" class="animation2" /> ')
-  refresh()
+  manipulator.animAll()
 }
 function rngDir() {
   var dir=rand(0,1);
@@ -52,7 +38,6 @@ function getPos(e) {
     }
 //init bind
 $("#start").click(anim);
-$("#stop").click(anim2);
 
 
 //first get script pour include util.js qui contient le multi include
@@ -71,9 +56,7 @@ $.getScript( "./../../js/Tapis/jsClass/util.js", function() {
     //code
     //init def
     var listeClass =[Tapis,Ore];
-    manipulator=new Manipulator();
-    manipulator.setListeClass(listeClass);
-    manipulator.writeDef();
+    manipulator=new Manipulator(listeClass);
 
     var pos1=new Position(0,0,0)
     var pos2=new Position(100,100,1)
