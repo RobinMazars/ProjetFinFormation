@@ -1,13 +1,13 @@
 console.log('class manipulator load');
 class Manipulator {
-  constructor(listeClass) {
+  constructor(listeClass,grille) {
     this.listeObject = [];
     this.listeClass = listeClass;
     this.writeDef()
     this.grille = new Grille();
-    this.bindOnCLick()
     this.regroup()
     this.addSelector()
+    this.eventController = new EventController(this)
   }
   addSelector() {
     $("<div id='selector'> </div>").insertAfter("#frame")
@@ -16,13 +16,6 @@ class Manipulator {
       console.log(className);
       $("#selector").append(("<button type='button' class='selectorItem'>" + className + "</button>"));
     }
-    $('.selectorItem:first').addClass('selected')
-    this.selected = this.listeClass[0]
-    var manipulator = this // HACK:
-    $('.selectorItem').click(function(event) {
-      manipulator.changeSelector(this)
-    });
-
   }
   changeSelector(selected) {
     $('.selectorItem').removeClass('selected')
@@ -33,7 +26,6 @@ class Manipulator {
         break
       }
     }
-
   }
   regroup() {
     var group = $("<g id='figureGrp'></g>")
@@ -41,30 +33,7 @@ class Manipulator {
     var group = $("<g id='animationGrp'></g>")
     $("#svg").append(group);
   }
-  getPosMouse(e) {
-    var container = document.getElementById('frame')
-    var offset = container.getBoundingClientRect();
-    var styles = window.getComputedStyle(container);
-    var cursorX = e.clientX - offset.left - parseInt(styles.borderLeftWidth);
-    var cursorY = e.clientY - offset.top - parseInt(styles.borderTopWidth);
-    //console.log(cursorX, cursorY);
-    return {
-      x: cursorX,
-      y: cursorY
-    }
-  }
-  bindOnCLick() {
-    var manipulator = this // HACK:
-    $("#frame").click(function(event) {
-      //console.log("bind");
-      manipulator.onClick(event)
-    });
-  }
-  onClick(event) {
-    var posMouse = this.getPosMouse(event);
-    var pos = this.calcPos(posMouse)
-    this.placeObject(this.selected, pos)
-  }
+
   calcPos(posMouse) {
     var x = Math.floor(posMouse.x / this.grille.caseWidth);
     var y = Math.floor(posMouse.y / this.grille.caseHeight);
@@ -118,10 +87,61 @@ class Manipulator {
     this.listeObject.push(object);
   }
   writeDef() {
-    for (var i = 0; i < this.listeClass.length; i++) {
-      var def = this.listeClass[i].def()
-      $("#svg").prepend(def)
+    var classes = this.listeClass;
+    for (var i = 0; i < classes.length; i++) {
+      if (classes[i].haveMultipleDef()) {
+        console.log('in');
+        console.log(classes[i].def());
+        for (var j = 0; j < classes[i].def().length; j++) {
+          var def =classes[i].def()[j]
+          $("#svg").prepend(def)
+        }
+      } else {
+        console.log('out');
+        var def = classes[i].def()
+        $("#svg").prepend(def)
+      }
+
     }
   }
+  findObject(position){
+    console.log('position rechercher '+position.x);
+    var find =null
+    for (var i = 0; i < this.listeObject.length; i++) {
+      console.log('pos.x = '+this.listeObject[i].pos.x)
+      var x= this.listeObject[i].pos.x
+      var y= this.listeObject[i].pos.y
+      if (x==position.x && y==position.y) {
+        console.log('match');
+        var find=this.listeObject[i]
+        break
+      }
+    }
+    return find
+  }
+  changeUrlDef(pos){
+    var object = this.findObject(pos)
+    if (object != null ) {
+      console.log(object.getId());
+      console.log(object.type);
+      var classObject = object.getClass()
+      if (classObject.haveMultipleDef()) {
+        var nextType =classObject.nextType(object.type)
+        console.log(nextType);
+        object.type=nextType
+        $("#object-"+object.getId()).attr('fill', 'url(#Tapis-'+nextType+')');
+        refresh()
+      }
+      else {
+        console.log('object à un seul type');
+      }
 
+    }
+    else {
+      console.log("pas d'object trouvé");
+    }
+
+
+
+  }
 }

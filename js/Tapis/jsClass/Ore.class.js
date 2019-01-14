@@ -3,6 +3,7 @@ console.log('class ore load');
 class Ore extends AbstractObject {
   constructor(pos) {
     super(pos)
+    this.setSvg()
   }
   static getClassName(){
     return 'Ore'
@@ -11,7 +12,10 @@ class Ore extends AbstractObject {
     console.log('ore aff');
   }
   static def() {
-    return super.def('rgba(0,0,0,0.5)', 'ore', '3,0 7,0 10,3 10,7 7,10 3,10 0,7 0,3')
+    return super.def('rgba(0,0,0,0.5)', 'ore', 'M3 0 L7 0 L 10 3 L 10 7 L 7 10 L 3 10 L 0 7 L 0 3')
+  }
+  getClass(){
+    return Ore
   }
   setSvg() {
     super.setSvg('ore')

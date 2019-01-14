@@ -3,17 +3,18 @@ class AbstractObject {
   constructor(pos) {
     this.pos = pos;
     this.idMyself();
-    this.setSvg()
   }
-  static def(color = 'red', idName='Default',pattern='0,0 0,10 10,10 10,0', width='100%', height='100%') {
+  static def(color = 'red', idName='Default',pattern='M0 0 L0 10 L10 10 L10 0', width='100%', height='100%') {
     var def = $("<defs></defs>");
     var patern = $('<pattern id=' + idName + ' viewBox="0,0,10,10" width='+width+'  height='+height+' >');
-    var image = ('<polygon fill=' + color + ' points="' + pattern + '"/>');
+    var image = ('<path fill=' + color + ' d="' + pattern + '"/>');
     patern = patern.html(image);
     def = def.append(patern);
     return def;
   }
-
+  static haveMultipleDef(){
+    return false
+  }
   idMyself() {
     if (AbstractObject.id == undefined) {
       AbstractObject.id = 1;
@@ -23,7 +24,7 @@ class AbstractObject {
     //console.log(AbstractObject.id);
     this.id = AbstractObject.id;
   }
-  setSvg(idDef ) {
+  setSvg(idDef) {
     var width = 50;
     var height = 50;
     var center = {}
