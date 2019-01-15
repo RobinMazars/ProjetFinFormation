@@ -56,7 +56,7 @@ $.getScript("./../../js/Tapis/jsClass/util.js", function() {
     var pos1 = new Position(0, 0, 0)
     var pos2 = new Position(100, 100, 1)
     var pos3 = new Position(150, 150, 0)
-    var pos4 = new Position(450, 450, 0)
+    var pos4 = new Position(450, 450, 1)
 
     var h = new Tapis(pos1);
     var h2 = new Tapis(pos2,'left');

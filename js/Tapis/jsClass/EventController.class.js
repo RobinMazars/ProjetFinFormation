@@ -10,8 +10,8 @@ class EventController {
     this.bindHover()
 
   }
-  init(){
-    var self=this // HACK:
+  init() {
+    var self = this // HACK:
     $("#start").click(self.anim);
   }
   bindOnCLick() {
@@ -41,7 +41,7 @@ class EventController {
   anim() {
     self.manipulator.run()
   }
-  initSelector(){
+  initSelector() {
     $('.selectorItem:first').addClass('selected')
     this.manipulator.selected = this.manipulator.listeClass[0]
     var manipulator = this.manipulator // HACK:
@@ -49,8 +49,8 @@ class EventController {
       manipulator.changeSelector(this)
     });
   }
-  bindHover(e){
-    self=this
+  bindHover(e) {
+    self = this
     $('#frame').hover(function(e) {
       $(this).mousemove(function(event2) {
         $(document).unbind('keypress')
@@ -60,14 +60,18 @@ class EventController {
           var posMouse = self.getPosMouse(event2);
           var pos = self.manipulator.calcPos(posMouse)
           console.log(pos);
-          if (touche == 'r') {
+          if (touche == 't') {
             self.manipulator.changeUrlDef(pos)
           }
-
+          else if (touche == 'r') {
+            self.manipulator.rotateObject(pos)
+          }
         });
       });
       $('h1').css('background', 'violet');
     }, function() {
+      $(document).unbind('mousemove')
+      $(document).unbind('keypress')
       $('h1').css('background', '');
     });
 

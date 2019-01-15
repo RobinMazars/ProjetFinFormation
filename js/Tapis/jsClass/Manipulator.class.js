@@ -1,6 +1,6 @@
 console.log('class manipulator load');
 class Manipulator {
-  constructor(listeClass,grille) {
+  constructor(listeClass, grille) {
     this.listeObject = [];
     this.listeClass = listeClass;
     this.writeDef()
@@ -30,6 +30,11 @@ class Manipulator {
   regroup() {
     var group = $("<g id='figureGrp'></g>")
     $("#svg").append(group);
+    var subGroup1 = $("<g id='figureGrpDown'></g>")
+    var subGroup2 = $("<g id='figureGrpUp'></g>")
+    group.append(subGroup1)
+    group.append(subGroup2)
+    $("#svg").append(group);
     var group = $("<g id='animationGrp'></g>")
     $("#svg").append(group);
   }
@@ -44,15 +49,25 @@ class Manipulator {
     return pos;
   }
   placeObject(type, pos) {
-    var object = new type(pos)
-    //console.log(object);
-    this.writeObject(object)
-    this.addObject(object)
-    refresh("#figureGrp")
+    if (this.findObject(pos) == null ||type.getClassName() != this.findObject(pos).getClass().getClassName()) {
+      var object = new type(pos)
+      //console.log(object);
+      this.writeObject(object)
+      this.addObject(object)
+      refresh("#figureGrp")
+    }
+
   }
   writeObject(object) {
+    var classe = object.getClass().getClassName()
     var svg = object.getSvg();
-    $("#figureGrp").append(svg);
+    if (classe == 'Tapis') {
+      $("#figureGrpDown").append(svg);
+    }
+    else {
+      $("#figureGrpUp").append(svg);
+    }
+
   }
   writeAll() {
     for (var i = 0; i < this.listeObject.length; i++) {
@@ -64,7 +79,13 @@ class Manipulator {
     for (var i = 0; i < this.listeClass.length; i++) {
       if (typeof this.listeClass[i].getAnimation === 'function') {
         var animation = this.listeClass[i].getAnimation();
-        $("#animationGrp").append(animation);
+        if (typeof animation == 'object') {
+          for (var i = 0; i < animation.length; i++) {
+            $("#animationGrp").append(animation[i])
+          }
+        } else {
+          $("#animationGrp").append(animation);
+        }
       }
     }
   }
@@ -90,54 +111,64 @@ class Manipulator {
     var classes = this.listeClass;
     for (var i = 0; i < classes.length; i++) {
       if (classes[i].haveMultipleDef()) {
-        console.log('in');
-        console.log(classes[i].def());
+        //console.log(classes[i].def());
         for (var j = 0; j < classes[i].def().length; j++) {
-          var def =classes[i].def()[j]
+          var def = classes[i].def()[j]
           $("#svg").prepend(def)
         }
       } else {
-        console.log('out');
         var def = classes[i].def()
         $("#svg").prepend(def)
       }
 
     }
   }
-  findObject(position){
-    console.log('position rechercher '+position.x);
-    var find =null
+  findObject(position,excludeType='Default') {
+    var find = null
+    //console.log('position rechercher x'+position.x);
+    //console.log('position rechercher y'+position.y);
     for (var i = 0; i < this.listeObject.length; i++) {
-      console.log('pos.x = '+this.listeObject[i].pos.x)
-      var x= this.listeObject[i].pos.x
-      var y= this.listeObject[i].pos.y
-      if (x==position.x && y==position.y) {
+      //console.log('------object-----');
+      var x = this.listeObject[i].pos.x
+      var y = this.listeObject[i].pos.y
+      //console.log('x '+x);
+      //console.log('y '+y);
+      if (x == position.x && y == position.y && excludeType != this.listeObject[i].getClass()) {
+        var find = this.listeObject[i]
         console.log('match');
-        var find=this.listeObject[i]
         break
       }
+      //console.log('-----------');
     }
     return find
   }
-  changeUrlDef(pos){
-    var object = this.findObject(pos)
-    if (object != null ) {
-      console.log(object.getId());
-      console.log(object.type);
-      var classObject = object.getClass()
-      if (classObject.haveMultipleDef()) {
-        var nextType =classObject.nextType(object.type)
-        console.log(nextType);
-        object.type=nextType
-        $("#object-"+object.getId()).attr('fill', 'url(#Tapis-'+nextType+')');
-        refresh()
-      }
-      else {
-        console.log('object à un seul type');
-      }
+  rotateObject(pos){
+    var object = this.findObject(pos,Ore)
+    if (object != null) {
+      var queryObject=$("#object-" + object.getId())
+      console.log(queryObject.attr('transform'));
+      var actualDegree = findDigit(queryObject.attr('transform'))
+      var newDegree =(parseInt(actualDegree)+90)%360;
+      queryObject.attr('transform', 'rotate('+newDegree+')');
+      refresh('#figureGrp')
 
     }
-    else {
+  }
+  changeUrlDef(pos) {
+    var object = this.findObject(pos,Ore)
+    console.log(object);
+    if (object != null) {
+      var classObject = object.getClass()
+      if (classObject.haveMultipleDef()) {
+        var nextType = classObject.nextType(object.type)
+        object.type = nextType
+        console.log(nextType);
+        $("#object-" + object.getId()).attr('fill', 'url(#Tapis-' + nextType + ')');
+        refresh("#figureGrp")
+      } else {
+        console.log('object à un seul type');
+      }
+    } else {
       console.log("pas d'object trouvé");
     }
 
