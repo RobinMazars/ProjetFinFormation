@@ -24,13 +24,13 @@ class AbstractObject {
     //console.log(AbstractObject.id);
     this.id = AbstractObject.id;
   }
-  setSvg(idDef,) {
+  setSvg(idDef) {
     var width = 50;
     var height = 50;
     var origin = {}
     origin = this.getCenter(width, height)
 
-    console.log(origin.string);
+    //console.log(origin.string);
     var angle = 90 * this.pos.direction;
     this.svg = '<rect id="object-' + this.getId() + '" width=' + width + ' height=' + height + ' x=' + this.pos.x + '  y=' + this.pos.y + ' fill="url(#' + idDef + ')"  transform-origin="' + origin.string + '" transform="rotate(' + angle + ')"/>'
   }

@@ -39,7 +39,9 @@ class EventController {
     this.manipulator.placeObject(this.manipulator.selected, pos)
   }
   anim() {
+    $("#start").unbind('click')
     self.manipulator.run()
+    setTimeout(function() { self.init(); }, 500);
   }
   initSelector() {
     $('.selectorItem:first').addClass('selected')
