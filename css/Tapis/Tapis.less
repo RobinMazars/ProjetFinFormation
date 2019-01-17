@@ -1,4 +1,8 @@
 // out: Tapis.css, sourcemap: true
+#sousSection{
+  display: flex;
+  flex-direction: row;
+}
 #frame{
   margin: auto;
   width: 500px;
@@ -12,10 +16,36 @@
 object{
   border: 1px black solid;
 }
+#selector{
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  >*{
+    margin: 5%;
+  }
+}
 #selector>.selected{
   background-color: red;
 }
+#loadSave{
+  display: flex;
+  flex-direction: row;
 
+  flex :2;
+}
+#load-buttons,#save-buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin :2%;
+}
+.load.notSave{
+  filter: opacity(0.5);
+}
+.save.empty:after{
+  content: ' empty'
+
+}
 
 
 /*# sourceMappingURL=Tapis.css.map */

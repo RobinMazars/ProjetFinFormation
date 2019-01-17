@@ -1,13 +1,15 @@
 console.log('class manipulator load');
 class Manipulator {
-  constructor(listeClass, grille) {
+  constructor(
+    listeClass, grille) {
     this.listeObject = [];
     this.listeClass = listeClass;
     this.writeDef()
     this.grille = new Grille();
     this.regroup()
     this.addSelector()
-    this.eventController = new EventController(this)
+    this.saver= new SaveManipulator(this)
+    this.eventController = new EventController(this,this.saver)
     this.listeObjectChange = []
     this.affListeObject()
   }
@@ -40,7 +42,27 @@ class Manipulator {
     var group = $("<g id='animationGrp'></g>")
     $("#svg").append(group);
   }
+  reset(listeObjectLoad){
+    $("#figureGrpUp").empty()
+    $("#figureGrpDown").empty()
+    this.listeObject = [];
+    for (var i = 0; i < listeObjectLoad.length; i++) {
+      //console.log(listeObjectLoad[i].classe)
+      var classe;
+      if (listeObjectLoad[i].classe == 'Tapis') {
+        classe=Tapis
+        this.placeObject(classe,listeObjectLoad[i].pos)
+        //console.log(listeObjectLoad[i].type);
+        this.changeUrlDef(listeObjectLoad[i].pos,listeObjectLoad[i].type)
 
+      }
+      else if (listeObjectLoad[i].classe == 'Ore') {
+        classe=Ore
+        this.placeObject(classe,listeObjectLoad[i].pos)
+      }
+
+    }
+  }
   calcPos(posMouse) {
     var x = Math.floor(posMouse.x / this.grille.caseWidth);
     var y = Math.floor(posMouse.y / this.grille.caseHeight);
@@ -50,10 +72,10 @@ class Manipulator {
     var pos = new Position(x.toString(), y.toString(), direction);
     return pos;
   }
-  placeObject(type, pos) {
+  placeObject(classes, pos) {
     var objectOnPlace = this.findObject(pos)
-    if (objectOnPlace == null || type.getClassName() != objectOnPlace.getClass().getClassName()) {
-      var object = new type(pos)
+    if (objectOnPlace == null || classes.getClassName() != objectOnPlace.getClass().getClassName()) {
+      var object = new classes(pos)
       //console.log(object);
       this.addObject(object)
       this.writeObject(object)
@@ -223,21 +245,21 @@ class Manipulator {
   }
   findObject(position, excludeType = 'Default') {
     var find = null
-    console.log('position rechercher x'+position.x);
-    console.log('position rechercher y'+position.y);
+    //console.log('position rechercher x'+position.x);
+    //console.log('position rechercher y'+position.y);
     for (var i = 0; i < this.listeObject.length; i++) {
       // console.log('------object-----');
       var x = this.listeObject[i].pos.x
       var y = this.listeObject[i].pos.y
 
-      console.log('id '+this.listeObject[i].getId());
-      console.log('x '+x);
-      console.log('y '+y);
-      console.log('-----------');
+      //console.log('id '+this.listeObject[i].getId());
+      //console.log('x '+x);
+      //console.log('y '+y);
+      //console.log('-----------');
       if (x == position.x && y == position.y && excludeType != this.listeObject[i].getClass()) {
         var find = this.listeObject[i]
-        console.log('match');
-        console.log('id find ' + find.getId());
+        //console.log('match');
+        //console.log('id find ' + find.getId());
         break
       }
 
@@ -257,15 +279,19 @@ class Manipulator {
 
     }
   }
-  changeUrlDef(pos) {
+  changeUrlDef(pos,typeGive='None') {
     var object = this.findObject(pos, Ore)
-    console.log(object);
+    //console.log(object);
     if (object != null) {
       var classObject = object.getClass()
       if (classObject.haveMultipleDef()) {
-        var nextType = classObject.nextType(object.type)
+        if (typeGive != 'None') {
+          nextType=typeGive
+        }else {
+          var nextType = classObject.nextType(object.type)
+        }
         object.type = nextType
-        console.log(nextType);
+        //console.log(nextType);
         $("#object-" + object.getId()).attr('fill', 'url(#Tapis-' + nextType + ')');
         refresh("#figureGrp")
       } else {
@@ -274,8 +300,5 @@ class Manipulator {
     } else {
       console.log("pas d'object trouvé");
     }
-
-
-
   }
 }

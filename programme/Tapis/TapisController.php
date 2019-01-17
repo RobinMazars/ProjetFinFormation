@@ -9,7 +9,7 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./../../css/master.css">
 <link rel="stylesheet" href="./../../css/Tapis/Tapis.css">
 <!--class  -->
-<?php include './model/Tapis.model.php'; ?>
+<!--  -->
 <?php
 include './../../inc/http.inc.php';
 include './../../inc/header.inc.php';

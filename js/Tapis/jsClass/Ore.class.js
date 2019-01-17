@@ -8,6 +8,9 @@ class Ore extends AbstractObject {
   static getClassName() {
     return 'Ore'
   }
+  getClassNameFromObject(){
+    return 'Ore'
+  }
   static aff() {
     console.log('ore aff');
   }

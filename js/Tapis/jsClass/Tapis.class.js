@@ -42,6 +42,9 @@ class Tapis extends AbstractObject {
   static getClassName(){
     return 'Tapis'
   }
+  getClassNameFromObject(){
+    return 'Tapis'
+  }
   getClass(){
     return Tapis
   }
