@@ -50,7 +50,7 @@ $.getScript("./../../js/Tapis/jsClass/util.js", function() {
 
   ];
   $.getMultiScripts(script_arr, "./../../js/Tapis/jsClass/").done(function() {
-    $( window ).on( "load", function() {
+      dom =new DomController()
       var listeClass = [Tapis, Ore];
       manipulator = new Manipulator(listeClass);
       var pos1 = new Position(0, 0, 0)
@@ -67,8 +67,6 @@ $.getScript("./../../js/Tapis/jsClass/util.js", function() {
       manipulator.addObject(h3)
       manipulator.addObject(h4)
       manipulator.writeAll()
-      grille=new Grille()
-    });
 
   });
 });

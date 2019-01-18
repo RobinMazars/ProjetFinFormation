@@ -1,9 +1,10 @@
 console.log('class DomController load');
 class DomController {
   constructor() {
-    this.nbrSaveButton=10
-    this.findMainContainer()
-    this.creatAll()
+    this.nbrSaveButton=9
+    var div =this.creationSaveLoadButton()
+    $("#sousSection").prepend(div)
+    //this.creatAll()
     console.log('endDomController');
   }
   findMainContainer(){
@@ -30,22 +31,27 @@ class DomController {
   }
   creationSaveLoadButton(){
     var loadSave=this.creationDomElement('div','loadSave')
-    var load=this.creationDomElement('div','load-buttons')
-    var save=this.creationDomElement('div','save-buttons')
+
     for (var i = 0; i < this.nbrSaveButton; i++) {
+      var div=this.creationDomElement('div',null,null,'saveLoad-Buttons')
       var buttonSave = this.creationDomElement('button',null,'Save n°'+parseInt(i+1),'save')
       buttonSave.attr('type', 'button');
+      buttonSave.attr('data-id', i+1);
       var buttonLoad = this.creationDomElement('button',null,'Load n°'+parseInt(i+1),'load')
       buttonLoad.attr('type', 'button');
-      save.append(buttonSave)
-      load.append(buttonLoad)
+      buttonLoad.attr('data-id', i+1);
+      var buttonSupre = this.creationDomElement('button',null,'<i class="fas fa-trash-alt"></i>','supre')
+      buttonSupre.attr('type', 'button');
+      buttonSupre.attr('data-id', i+1);
+      div.append(buttonSave)
+      div.append(buttonLoad)
+      div.append(buttonSupre)
+      loadSave.append(div)
     }
-    loadSave.append(save)
-    loadSave.append(load)
     return loadSave
   }
   createSousSection(){
-    var sousSection=this.creationDomElement('div','sousSection')
+
     var loadSave=this.creationSaveLoadButton()
 
     var frame=this.creationDomElement('div','frame')

@@ -10,42 +10,55 @@ class EventController {
     this.bindOnCLick()
     this.bindHover()
     this.checkSave()
-    
   }
   init() {
     var self = this // HACK:
     $("#oneStep").click(self.animOneStep);
     $("#start").click(self.animRepeat);
+    $("#clearSvg").click(self.clearSvg);
     this.checkSave()
-    this.bindSaveButton()
-    this.bindLoadButton()
+    this.bindAllSaveLoadButtons()
+  }
+  clearSvg(){
+    self.manipulator.removeAllObject()
   }
   checkSave(){
     var listeSave=this.saver.checkSave()
     console.log(listeSave);
     $(".save").addClass('empty')
     $(".load").addClass('notSave')
+    $(".supre").addClass('notSave')
     for (var i = 0; i < listeSave.length; i++) {
       $(".save[data-id="+listeSave[i]+"]").removeClass('empty')
       $(".load[data-id="+listeSave[i]+"]").removeClass('notSave')
+      $(".supre[data-id="+listeSave[i]+"]").removeClass('notSave')
     }
   }
+  bindAllSaveLoadButtons(){
+    self=this
+    $(function(){
+      console.log('bind All');
+      self.bindSaveButton()
+      self.bindLoadButton()
+      self.bindSupreButton()
+    })
+
+  }
   changeButton(id){
-    $(".save[data-id="+id+"]").removeClass('empty')
-    $(".load[data-id="+id+"]").removeClass('notSave')
-    this.manipulator.EventController
+    console.log('toogle');
+    $(".save[data-id="+id+"]").toggleClass('empty')
+    $(".load[data-id="+id+"]").toggleClass('notSave')
+    $(".supre[data-id="+id+"]").toggleClass('notSave')
   }
-  bindLoadButton(){
-    this.unbindLoadButton()
-    $(".load:not(.notSave)").click(function(){
-        self.load($(this).attr('data-id'))
-    });
-  }
+
   unbindLoadButton(){
-    $(".load:not(.notSave)").unbind('click')
+    $(".load").unbind('click')
   }
   unbindSaveButton(){
-    $(".save.empty").unbind('click')
+    $(".save").unbind('click')
+  }
+  unbindSupreButton(){
+    $(".supre").unbind('click')
   }
   bindSaveButton(){
     this.unbindSaveButton()
@@ -53,12 +66,31 @@ class EventController {
         self.save($(this).attr('data-id'))
     });
   }
+  bindLoadButton(){
+    this.unbindLoadButton()
+    $(".load:not(.notSave)").click(function(){
+        self.load($(this).attr('data-id'))
+    });
+  }
+  bindSupreButton(){
+    this.unbindSupreButton()
+    $(".supre:not(.notSave)").click(function(){
+        self.supre($(this).attr('data-id'))
+    });
+  }
+
   save(saveName){
-    self.saver.save(saveName)
-    self.changeButton(saveName)
+    this.saver.save(saveName)
+    this.changeButton(saveName)
+    this.bindAllSaveLoadButtons()
   }
   load(saveName){
-    self.saver.load(saveName)
+    this.saver.load(saveName)
+  }
+  supre(saveName){
+    this.saver.clearSave(saveName)
+    this.changeButton(saveName)
+    this.bindAllSaveLoadButtons()
   }
   bindOnCLick() {
     var self = this // HACK:
@@ -132,6 +164,9 @@ class EventController {
           }
           else if (touche == 'r') {
             self.manipulator.rotateObject(pos)
+          }
+          else if (touche == 'x') {
+            self.manipulator.removeObjectOnClick(pos)
           }
         });
       });

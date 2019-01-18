@@ -8,13 +8,13 @@ class Manipulator {
     this.grille = new Grille();
     this.regroup()
     this.addSelector()
-    this.saver= new SaveManipulator(this)
-    this.eventController = new EventController(this,this.saver)
+    this.saver = new SaveManipulator(this)
+    this.eventController = new EventController(this, this.saver)
     this.listeObjectChange = []
     this.affListeObject()
   }
   addSelector() {
-    $("<div id='selector'> </div>").insertAfter("#frame")
+    $("<div id='selector'> </div>").insertAfter("#containerFrameControl")
     for (var i = 0; i < this.listeClass.length; i++) {
       var className = this.listeClass[i].getClassName();
       console.log(className);
@@ -42,7 +42,7 @@ class Manipulator {
     var group = $("<g id='animationGrp'></g>")
     $("#svg").append(group);
   }
-  reset(listeObjectLoad){
+  reset(listeObjectLoad) {
     $("#figureGrpUp").empty()
     $("#figureGrpDown").empty()
     this.listeObject = [];
@@ -50,15 +50,14 @@ class Manipulator {
       //console.log(listeObjectLoad[i].classe)
       var classe;
       if (listeObjectLoad[i].classe == 'Tapis') {
-        classe=Tapis
-        this.placeObject(classe,listeObjectLoad[i].pos)
+        classe = Tapis
+        this.placeObject(classe, listeObjectLoad[i].pos)
         //console.log(listeObjectLoad[i].type);
-        this.changeUrlDef(listeObjectLoad[i].pos,listeObjectLoad[i].type)
+        this.changeUrlDef(listeObjectLoad[i].pos, listeObjectLoad[i].type)
 
-      }
-      else if (listeObjectLoad[i].classe == 'Ore') {
-        classe=Ore
-        this.placeObject(classe,listeObjectLoad[i].pos)
+      } else if (listeObjectLoad[i].classe == 'Ore') {
+        classe = Ore
+        this.placeObject(classe, listeObjectLoad[i].pos)
       }
 
     }
@@ -73,13 +72,29 @@ class Manipulator {
     return pos;
   }
   placeObject(classes, pos) {
-    var objectOnPlace = this.findObject(pos)
-    if (objectOnPlace == null || classes.getClassName() != objectOnPlace.getClass().getClassName()) {
+    var objectOnPlace = this.findAllObject(pos)
+    if (objectOnPlace.length == 0) {
       var object = new classes(pos)
       //console.log(object);
       this.addObject(object)
       this.writeObject(object)
       refresh("#figureGrp")
+    } else {
+      var already = false;
+      for (var i = 0; i < objectOnPlace.length; i++) {
+        var object = this.listeObject[objectOnPlace[i]]
+        if (object.getClass().getClassName() == classes.getClassName()) {
+          //console.log(object.getClass().getClassName(),classes.getClassName());
+          already = true
+        }
+      }
+      if (!already) {
+        var object = new classes(pos)
+        //console.log(object);
+        this.addObject(object)
+        this.writeObject(object)
+        refresh("#figureGrp")
+      }
     }
   }
   writeObject(object) {
@@ -153,17 +168,17 @@ class Manipulator {
   moveAll() {
     for (var i = 0; i < this.listeObject.length; i++) {
       if (typeof this.listeObject[i].getMove === 'function') {
-        var tapisUnder = this.findObject(this.listeObject[i].pos,Ore)
+        var tapisUnder = this.findObject(this.listeObject[i].pos, Ore)
 
         if (tapisUnder != null) {
-          console.log('tapisUnder '+tapisUnder.getId());
+          console.log('tapisUnder ' + tapisUnder.getId());
           console.log(tapisUnder.type);
 
-          console.log('tapisUnder direction '+tapisUnder.pos.direction);
+          console.log('tapisUnder direction ' + tapisUnder.pos.direction);
           var moveDirection = this.calcDirection(tapisUnder.type,
             tapisUnder.pos.direction)
 
-          console.log("direction move "+moveDirection);
+          console.log("direction move " + moveDirection);
           var direction = this.calcMove(moveDirection)
           console.log(direction);
 
@@ -188,13 +203,13 @@ class Manipulator {
     for (var i = 0; i < liste.length; i++) {
       this.rewriteObject(liste[i].object, liste[i].posFinal, liste[i].axe, liste[i].index)
     }
-    this.listeObjectChange=[]
+    this.listeObjectChange = []
     refresh("#figureGrp")
   }
   rewriteObject(object, posFinal, axe, index) {
 
     var id = object.getId()
-    console.log('rewriteObject with id '+id);
+    console.log('rewriteObject with id ' + id);
     $("#object-" + id).remove()
     if (axe == 'x') {
       object.pos.x = parseInt(posFinal)
@@ -212,20 +227,45 @@ class Manipulator {
     console.log(this.listeObjectChange);
     refresh()
     var _this = this
-    setTimeout(function() { _this.rewriteAll(); }, 500);
+    setTimeout(function() {
+      _this.rewriteAll();
+    }, 500);
   }
   addObject(object) {
     this.listeObject.push(object);
   }
-  affListeObject(){
+  affListeObject() {
     console.log("liste------");
     for (var i = 0; i < this.listeObject.length; i++) {
       console.log("object--");
-      console.log("x:"+this.listeObject[i].pos.x)
-      console.log("y:"+this.listeObject[i].pos.y)
+      console.log("x:" + this.listeObject[i].pos.x)
+      console.log("y:" + this.listeObject[i].pos.y)
       console.log("--");
     }
     console.log("------");
+  }
+  removeObjectOnClick(pos,classes='default'){
+    var find=this.findAllObject(pos)
+    if (find.length >1) {
+      console.log('en attente de code');//// TODO: implemente ui to choose
+    }
+    else if(find.length == 1) {
+      console.log('==1');
+      this.removeObject(find[0])
+    }
+    refresh("#figureGrp")
+  }
+  removeObject(index){
+    var object=this.listeObject[index]
+    var id=object.getId()
+    $("#object-"+id).remove()
+    this.listeObject.splice(index,1)
+  }
+  removeAllObject(){
+    while (this.listeObject.length !=0) {
+      this.removeObject(0)
+    }
+    refresh("#figureGrp")
   }
   writeDef() {
     var classes = this.listeClass;
@@ -243,6 +283,19 @@ class Manipulator {
 
     }
   }
+  findAllObject(position) {
+    var find = []
+    for (var i = 0; i < this.listeObject.length; i++) {
+      var x = this.listeObject[i].pos.x
+      var y = this.listeObject[i].pos.y
+      if (x == position.x && y == position.y) {
+        //console.log(i);
+        find.push(i)
+      }
+    }
+    return find
+  }
+
   findObject(position, excludeType = 'Default') {
     var find = null
     //console.log('position rechercher x'+position.x);
@@ -262,7 +315,6 @@ class Manipulator {
         //console.log('id find ' + find.getId());
         break
       }
-
     }
     return find
   }
@@ -279,15 +331,15 @@ class Manipulator {
 
     }
   }
-  changeUrlDef(pos,typeGive='None') {
+  changeUrlDef(pos, typeGive = 'None') {
     var object = this.findObject(pos, Ore)
     //console.log(object);
     if (object != null) {
       var classObject = object.getClass()
       if (classObject.haveMultipleDef()) {
         if (typeGive != 'None') {
-          nextType=typeGive
-        }else {
+          nextType = typeGive
+        } else {
           var nextType = classObject.nextType(object.type)
         }
         object.type = nextType
