@@ -2,8 +2,15 @@
 @height: 400px;
 @widht: 400px;
 @largeurPiece: 100px;
+@cornerHeight: (@height/2)/sin(45deg);
 
-#frame {
+@color1: gold;
+@color2: rgba(171, 164, 7, 1);
+@color3: rgb(255, 0, 0);
+@color4: rgb(0, 0, 255);
+
+#frame,
+#frame2 {
   margin: 1% auto;
   height: @height+100px;
   width: @widht+100px;
@@ -21,68 +28,72 @@
   }
 
   to {
-    transform: rotateY(360deg);
-    -webkit-transform: rotateY(360deg);
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 }
 
-#piece {
-  margin:  5% auto;
+#piece,
+#piece2 {
+  margin: 5% auto;
   height: @height;
   width: @widht;
   text-align: center;
   transform-style: preserve-3d;
-  //transform: rotateY(10deg);
 
+  //transform: rotateY(10deg);
 }
-#piece:hover{
-  animation: rotate linear infinite reverse;
-  animation-duration: 5s;
+
+#frame:hover #piece {
+  animation: rotate linear forwards 3s alternate;
 }
+
 .piecePart {
-  height:@height;
+  height: @height;
   width: @widht;
   border-radius: 100%;
   position: absolute;
   backface-visibility: hidden;
 }
-@cornerHeight:(@height/2)/sin(45deg);
+
 .corner {
-    z-index: -1;
+  z-index: -1;
   height: @cornerHeight;
   width: @largeurPiece;
   position: absolute;
   left: (@widht/2)-(@largeurPiece/2);
-  top:@height/2-(@cornerHeight/2);
+  top: @height/2-(@cornerHeight/2);
   // -webkit-transform: rotateY(90deg);
   // transform: rotateY(90deg);
-
   backface-visibility: hidden;
 }
-@color1:gold;
-@color2:rgba(171, 164, 7, 1);
+
 #corner1 {
   background-image: linear-gradient(@color1, @color2);
   left: (@widht/2)-(@largeurPiece/2);
-  top:@height/2-(@cornerHeight/2);
-   -webkit-transform: translateX(@widht/4) translateY(@height/4) rotateY(90deg)  rotateX(-45deg);
-   transform: translateX(@widht/4) translateY(@height/4) rotateY(90deg)  rotateX(-45deg);
+  top: @height/2-(@cornerHeight/2);
+  -webkit-transform: translateX(@widht/4) translateY(@height/4) rotateY(90deg) rotateX(-45deg);
+  transform: translateX(@widht/4) translateY(@height/4) rotateY(90deg) rotateX(-45deg);
 }
+
 #corner2 {
   background-image: linear-gradient(@color2, @color1);
-  -webkit-transform:translateX(@widht/4) translateY(-@height/4) rotateY(90deg) rotateX(45deg);
-  transform:translateX(@widht/4) translateY(-@height/4) rotateY(90deg) rotateX(45deg);
+  -webkit-transform: translateX(@widht/4) translateY(-@height/4) rotateY(90deg) rotateX(45deg);
+  transform: translateX(@widht/4) translateY(-@height/4) rotateY(90deg) rotateX(45deg);
 }
+
 #corner3 {
   background-image: linear-gradient(@color2, @color1);
-  -webkit-transform:translateX(-@widht/4) translateY(-@height/4) rotateY(270deg) rotateX(45deg);
-  transform:translateX(-@widht/4) translateY(-@height/4) rotateY(270deg) rotateX(45deg);
+  -webkit-transform: translateX(-@widht/4) translateY(-@height/4) rotateY(270deg) rotateX(45deg);
+  transform: translateX(-@widht/4) translateY(-@height/4) rotateY(270deg) rotateX(45deg);
 }
+
 #corner4 {
   background-image: linear-gradient(@color1, @color2);
-  -webkit-transform:translateX(-@widht/4) translateY(@height/4) rotateY(270deg) rotateX(-45deg);
-  transform:translateX(-@widht/4) translateY(@height/4) rotateY(270deg) rotateX(-45deg);
+  -webkit-transform: translateX(-@widht/4) translateY(@height/4) rotateY(270deg) rotateX(-45deg);
+  transform: translateX(-@widht/4) translateY(@height/4) rotateY(270deg) rotateX(-45deg);
 }
+
 #piecePile {
   //display: none;
   background-color: @color1;
@@ -95,4 +106,31 @@
   transform: rotateY(180deg) translateZ(@largeurPiece/2);
   background-color: @color1;
 }
+
+////////////////////////////////piece 2
+#frame2:hover #pieceFace2 {
+  background-color: @color4;
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+#frame2:hover #pieceFace2 + #piecePile2 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+#pieceFace2 {
+  z-index: 0;
+  transition: background-color 5s cubic-bezier(1,0,0,1),transform 5s linear;
+  background-color: @color1;
+}
+
+#piecePile2 {
+  z-index: 0;
+  transition: background-color 5s cubic-bezier(1,0,0,1),transform 5s linear;
+  background-color: @color3;
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+
 /*# sourceMappingURL=piece.css.map */

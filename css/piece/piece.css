@@ -1,4 +1,5 @@
-#frame {
+#frame,
+#frame2 {
   margin: 1% auto;
   height: 500px;
   width: 500px;
@@ -11,20 +12,20 @@
     -webkit-transform: rotateY(0);
   }
   to {
-    transform: rotateY(360deg);
-    -webkit-transform: rotateY(360deg);
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 }
-#piece {
+#piece,
+#piece2 {
   margin: 5% auto;
   height: 400px;
   width: 400px;
   text-align: center;
   transform-style: preserve-3d;
 }
-#piece:hover {
-  animation: rotate linear infinite reverse;
-  animation-duration: 5s;
+#frame:hover #piece {
+  animation: rotate linear forwards 5s alternate;
 }
 .piecePart {
   height: 400px;
@@ -73,5 +74,26 @@
   -webkit-transform: rotateY(180deg) translateZ(50px);
   transform: rotateY(180deg) translateZ(50px);
   background-color: gold;
+}
+#frame2:hover #pieceFace2 {
+  background-color: #0000ff;
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+#frame2:hover #pieceFace2 + #piecePile2 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+#pieceFace2 {
+  z-index: 0;
+  transition: background-color 5s cubic-bezier(1, 0, 0, 1), transform 5s linear;
+  background-color: gold;
+}
+#piecePile2 {
+  z-index: 0;
+  transition: background-color 5s cubic-bezier(1, 0, 0, 1), transform 5s linear;
+  background-color: #ff0000;
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 /*# sourceMappingURL=piece.css.map */
