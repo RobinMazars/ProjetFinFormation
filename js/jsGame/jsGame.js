@@ -3,36 +3,36 @@ var canvas = new Canvas();
 //initBind
 $("#canvas").css('background', 'red');
 $("#canvas").mousedown(function(event) {
-  mouseDown();
+  mouseDown(event);
 });
 $("#color").change(function(event) {
   console.log($(this).val())
   canvas.pen.setColor($(this).val())
 });
 
-function mouseDown(){
+function mouseDown(e){
   console.log('mousedown');
-  canvas.startDrawLine(event)
+  canvas.startDrawLine(e)
   $("#canvas").mousemove(function(event) {
     canvas.continueDrawLine(event)
     $("#canvas").unbind('mousedown');
   });
   $("#canvas").mouseup(function(event) {
-    mouseUp();
+    mouseUp(event);
   });
   $("#canvas").mouseout(function(event) {
-    mouseUp();
+    mouseUp(event);
   });
 
 }
-function mouseUp(){
+function mouseUp(e){
   console.log('mouseup');
   canvas.endDrawLine()
   $("#canvas").unbind('mousemove');
   $("#canvas").unbind()
   $("#canvas").mousedown(function(event) {
     $("#canvas").unbind()
-    mouseDown();
+    mouseDown(event);
   });
 
 }
