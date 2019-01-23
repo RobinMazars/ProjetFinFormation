@@ -11,7 +11,7 @@ class Manipulator {
     this.saver = new SaveManipulator(this)
     this.eventController = new EventController(this, this.saver)
     this.listeObjectChange = []
-    this.affListeObject()
+    //this.affListeObject()
   }
   addSelector() {
     $("<div id='selector'> </div>").insertAfter("#containerFrameControl")
@@ -165,6 +165,43 @@ class Manipulator {
       }
     }
   }
+  checkCollision(pos, direction) {
+    var destination = {}
+    var caseHeight = parseInt(this.grille.caseHeight)
+    var caseWidth = parseInt(this.grille.caseWidth)
+    var collision = false;
+    console.log(pos.x);
+    console.log(pos.y);
+    console.log('dir:' + direction);
+    if (direction == 0) {
+      console.log('direction prévu:' + 0);
+      destination.x = pos.x;
+      destination.y = parseInt(pos.y) - caseHeight
+    } else if (direction == 1) {
+      console.log('direction prévu:' + 1);
+      destination.x = parseInt(pos.x) + caseWidth;
+      destination.y = pos.y
+    } else if (direction == 2) {
+      console.log('direction prévu:' + 2);
+      destination.x = pos.x;
+      destination.y = parseInt(pos.y) + caseHeight
+    } else {
+      console.log('direction prévu:' + 3);
+      destination.x = parseInt(pos.x) - caseWidth;
+      destination.y = pos.y
+    }
+    console.log(destination);
+    var listeObjectFind = this.findAllObject(destination)
+    console.log(listeObjectFind);
+    for (var i = 0; i < listeObjectFind.length; i++) {
+      var classes = this.listeObject[listeObjectFind[i]].getClassNameFromObject()
+      if (classes == 'Ore') {
+        collision = true
+        break
+      }
+    }
+    return collision
+  }
   moveAll() {
     for (var i = 0; i < this.listeObject.length; i++) {
       if (typeof this.listeObject[i].getMove === 'function') {
@@ -177,29 +214,72 @@ class Manipulator {
           console.log('tapisUnder direction ' + tapisUnder.pos.direction);
           var moveDirection = this.calcDirection(tapisUnder.type,
             tapisUnder.pos.direction)
+          var collision = this.checkCollision(this.listeObject[i].pos, moveDirection)
+          //console.log(collision);
+          if (!collision) {
+            console.log("direction move " + moveDirection);
+            var direction = this.calcMove(moveDirection)
+            //console.log(direction);
 
-          console.log("direction move " + moveDirection);
-          var direction = this.calcMove(moveDirection)
-          console.log(direction);
-
-          var move = this.listeObject[i].getMove(direction, this.grille.caseWidth, this.grille.caseHeight)
-          $("#animationGrp").append(move.svg);
-          console.log(this.listeObjectChange);
-
-          this.listeObjectChange.push({
-            object: this.listeObject[i],
-            posFinal: move.posFinal,
-            axe: direction.axe,
-            index: i
-          })
+            var move = this.getMove(this.listeObject[i],direction, this.grille.caseWidth, this.grille.caseHeight)
+            //console.log(move);
+            //console.log(this.listeObjectChange);
+            console.log(move.posFinal);
+            var alreadyPlannedPosition=false
+            for (var j = 0; j < this.listeObjectChange.length; j++) {
+              console.log(this.listeObjectChange[j].posFinal);
+              if(this.listeObjectChange[j].posFinal.x ==move.posFinal.x&&
+                this.listeObjectChange[j].posFinal.y ==move.posFinal.y
+              ){
+                alreadyPlannedPosition=true
+                break
+              }
+            }
+            if (!alreadyPlannedPosition) {
+              $("#animationGrp").append(move.svg);
+              this.listeObjectChange.push({
+                object: this.listeObject[i],
+                posFinal: move.posFinal,
+                axe: direction.axe,
+                index: i
+              })
+            }
+          }
         }
       }
     }
   }
+  getMove(object,direction, distanceX, distanceY) {
+    var position={}
+    if (direction.axe == 'x') {
+      var posInit = object.pos.x;
+      var axe = 'x'
+      position.y=object.pos.y
+      if (direction.signe == '+') {
+        var posFinal = (parseInt(posInit) + distanceX).toString()
+      } else {
+        var posFinal = (parseInt(posInit) - distanceX).toString()
+      }
+      position.x=posFinal
+    } else {
+      var posInit = object.pos.y;
+      var axe = 'y'
+      position.x=object.pos.x
+      if (direction.signe == '+') {
+        var posFinal = (parseInt(posInit) + distanceY).toString()
+      } else {
+        var posFinal = (parseInt(posInit) - distanceY).toString()
+      }
+      position.y=posFinal
+    }
+    var svg=object.getMove(axe,posInit,posFinal)
+    return {svg:svg,posFinal:position};
+
+  }
   rewriteAll() {
     console.log('rewrite time');
     var liste = this.listeObjectChange
-    console.log(this.listeObjectChange.length);
+    //console.log(this.listeObjectChange.length);
     for (var i = 0; i < liste.length; i++) {
       this.rewriteObject(liste[i].object, liste[i].posFinal, liste[i].axe, liste[i].index)
     }
@@ -207,16 +287,15 @@ class Manipulator {
     refresh("#figureGrp")
   }
   rewriteObject(object, posFinal, axe, index) {
-
     var id = object.getId()
     console.log('rewriteObject with id ' + id);
     $("#object-" + id).remove()
     if (axe == 'x') {
-      object.pos.x = parseInt(posFinal)
+      object.pos.x = parseInt(posFinal.x)
     } else {
-      object.pos.y = parseInt(posFinal)
+      object.pos.y = parseInt(posFinal.y)
     }
-    this.affListeObject()
+    //this.affListeObject()
     object.setSvg()
     this.writeObject(object)
   }
@@ -224,7 +303,7 @@ class Manipulator {
     $(".animation").remove();
     this.animAll()
     this.moveAll()
-    console.log(this.listeObjectChange);
+    //console.log(this.listeObjectChange);
     refresh()
     var _this = this
     setTimeout(function() {
@@ -244,25 +323,24 @@ class Manipulator {
     }
     console.log("------");
   }
-  removeObjectOnClick(pos,classes='default'){
-    var find=this.findAllObject(pos)
-    if (find.length >1) {
-      console.log('en attente de code');//// TODO: implemente ui to choose
-    }
-    else if(find.length == 1) {
+  removeObjectOnClick(pos, classes = 'default') {
+    var find = this.findAllObject(pos)
+    if (find.length > 1) {
+      console.log('en attente de code'); //// TODO: implemente ui to choose
+    } else if (find.length == 1) {
       console.log('==1');
       this.removeObject(find[0])
     }
     refresh("#figureGrp")
   }
-  removeObject(index){
-    var object=this.listeObject[index]
-    var id=object.getId()
-    $("#object-"+id).remove()
-    this.listeObject.splice(index,1)
+  removeObject(index) {
+    var object = this.listeObject[index]
+    var id = object.getId()
+    $("#object-" + id).remove()
+    this.listeObject.splice(index, 1)
   }
-  removeAllObject(){
-    while (this.listeObject.length !=0) {
+  removeAllObject() {
+    while (this.listeObject.length != 0) {
       this.removeObject(0)
     }
     refresh("#figureGrp")

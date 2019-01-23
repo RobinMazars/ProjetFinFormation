@@ -23,25 +23,8 @@ class Ore extends AbstractObject {
   setSvg() {
     super.setSvg('ore')
   }
-  getMove(direction, distanceX, distanceY) {
-    if (direction.axe == 'x') {
-      var posInit = this.pos.x;
-      var axe = 'x'
-      if (direction.signe == '+') {
-        var posFinal = (parseInt(posInit) + distanceX).toString()
-      } else {
-        var posFinal = (parseInt(posInit) - distanceX).toString()
-      }
-    } else {
-      var posInit = this.pos.y;
-      var axe = 'y'
-      if (direction.signe == '+') {
-        var posFinal = (parseInt(posInit) + distanceY).toString()
-      } else {
-        var posFinal = (parseInt(posInit) - distanceY).toString()
-      }
-    }
-    var move = '<animate xlink:href=#object-' + this.getId() + ' attributeName=' + axe + '  from =' + posInit + ' to=' + posFinal + ' fill="freeze" dur="0.5s" class="animation tapis" /> ';
-    return {svg:move,posFinal:posFinal};
+  getMove(axe,from,to){
+    var move = '<animate xlink:href=#object-' + this.getId() + ' attributeName=' + axe + '  from =' + from + ' to=' + to + ' fill="freeze" dur="0.5s" class="animation tapis" /> ';
+    return move
   }
 }

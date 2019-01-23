@@ -23,7 +23,7 @@ object {
   max-width: 15%;
 }
 #selector > * {
-  margin: 5%;
+  padding: 15%;
 }
 #selector > .selected {
   background-color: red;
