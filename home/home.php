@@ -48,9 +48,9 @@
     <h2>Réalisations</h2>
     <div id="lienRealisation">
       <a href="<?=$RelativePath."/programme/piece/piece.php" ?>">Piece full CSS</a>
-      <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">jsGame</a>
+      <a href="<?=$RelativePath."/programme/jsGame/jsGame.php" ?>">Canvas</a>
       <a href="<?=$RelativePath."/programme/Bdd/BddController.php"?>">Bdd</a>
-      <a href="#">Lien 4</a>
+      <a href="<?=$RelativePath."/programme/Tapis/TapisController.php"?>">Tapis</a>
       <a href="#">Lien 5</a>
       <a href="#">Lien 6</a>
     </div>

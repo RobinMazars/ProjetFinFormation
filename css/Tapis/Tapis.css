@@ -20,7 +20,6 @@ object {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  max-width: 15%;
 }
 #selector > * {
   padding: 15%;

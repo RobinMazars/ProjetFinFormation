@@ -5,12 +5,12 @@
       <li><a href="<?=$RelativePath."/index.php"  ?>"><i class="fas fa-home"></i> Home</a></li>
       <li class="sousMenusTitle">
         <i class="fas fa-folder-open"></i> <a href="#">Réalisations</a>
-        <ul class="sousMenusListe" >
+        <ul class="sousMenusListe" display='none'>
           <li><a href="<?=$RelativePath."/programme/piece/piece.php"  ?>">Piece CSS</a></li>
-          <li><a href="<?=$RelativePath."/programme/jsGame/jsGame.php"  ?>">jsGame</a></li>
+          <li><a href="<?=$RelativePath."/programme/jsGame/jsGame.php"  ?>">Canvas</a></li>
 
           <li><a href="<?=$RelativePath."/programme/BDD/BddController.php"  ?>">BDD</a></li>
-          <li><a href="<?=$RelativePath."/programme/Tapis/TapisController.php"  ?>">Tapie</a></li>
+          <li><a href="<?=$RelativePath."/programme/Tapis/TapisController.php"  ?>">Tapis</a></li>
         </ul>
 
       </li>

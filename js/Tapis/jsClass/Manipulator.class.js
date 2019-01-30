@@ -71,10 +71,15 @@ class Manipulator {
     var pos = new Position(x.toString(), y.toString(), direction);
     return pos;
   }
-  placeObject(classes, pos) {
+  placeObject(classes, pos,type=null) {
     var objectOnPlace = this.findAllObject(pos)
     if (objectOnPlace.length == 0) {
-      var object = new classes(pos)
+      if (type!=null && classes.getClassName()=='Tapis') {
+        var object = new classes(pos,type)
+      }
+      else {
+        var object = new classes(pos)
+      }
       //console.log(object);
       this.addObject(object)
       this.writeObject(object)

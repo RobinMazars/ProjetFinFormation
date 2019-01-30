@@ -15,7 +15,7 @@ class EventController {
     var self = this // HACK:
     $("#oneStep").click(self.animOneStep);
     $("#start").click(self.animRepeat);
-    $("#clearSvg").click(self.clearSvg);
+    this.bindClearAll()
     this.checkSave()
     this.bindAllSaveLoadButtons()
   }
@@ -41,6 +41,7 @@ class EventController {
       self.bindSaveButton()
       self.bindLoadButton()
       self.bindSupreButton()
+      self.bindClearAll()
     })
 
   }
@@ -50,7 +51,18 @@ class EventController {
     $(".load[data-id="+id+"]").toggleClass('notSave')
     $(".supre[data-id="+id+"]").toggleClass('notSave')
   }
-
+  unbindAllSaveLoadButton(){
+    this.unbindLoadButton()
+    this.unbindSaveButton()
+    this.unbindSupreButton()
+    this.unbindClearAll()
+  }
+  bindClearAll(){
+    $("#clearSvg").click(self.clearSvg);
+  }
+  unbindClearAll(){
+    $("#clearSvg").unbind('click')
+  }
   unbindLoadButton(){
     $(".load").unbind('click')
   }
@@ -94,7 +106,7 @@ class EventController {
   }
   bindOnCLick() {
     var self = this // HACK:
-    $("#frame").click(function(event) {
+    $("#frame").mousedown(function(event) {
       //console.log("bind");
       self.onClick(event)
     });
@@ -113,21 +125,25 @@ class EventController {
   }
   onClick(event) {
     var posMouse = this.getPosMouse(event);
+    console.log(posMouse);
     var pos = this.manipulator.calcPos(posMouse)
     this.manipulator.placeObject(this.manipulator.selected, pos)
   }
   animRepeat(){
     $("#start").unbind('click')
     $("#oneStep").unbind('click')
+    self.unbindAllSaveLoadButton()
     $("#stop").click(self.stopAnim);
     self.anim()
     self.loop =setInterval(self.anim,550)
   }
   animOneStep(){
     $("#oneStep").unbind('click')
+    self.unbindAllSaveLoadButton()
     self.anim()
     setTimeout(function(){
       $("#oneStep").click(self.animOneStep);
+      self.bindAllSaveLoadButtons()
     },500)
 
   }
@@ -136,6 +152,7 @@ class EventController {
     clearInterval(self.loop)
     $("#start").click(self.animRepeat);
     $("#oneStep").click(self.animOneStep)
+    self.bindAllSaveLoadButtons()
   }
   anim() {
     self.manipulator.run()
