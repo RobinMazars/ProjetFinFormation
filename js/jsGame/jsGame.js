@@ -9,8 +9,26 @@ $("#color").change(function(event) {
   console.log($(this).val())
   canvas.pen.setColor($(this).val())
 });
+$("#gomme").click(eraserOn);
 
-function mouseDown(e){
+function eraserOn() {
+  $("#gomme").unbind('click')
+  $("#gomme").click(eraserOff);
+  $('#gomme').addClass('selected')
+  canvas.eraserOn();
+}
+
+function eraserOff() {
+  $("#gomme").unbind('click')
+  $("#gomme").click(eraserOn);
+  $('#gomme').removeClass('selected')
+  canvas.eraserOff();
+}
+$("#btnErase").click(function(event) {
+  canvas.clearAll();
+});
+
+function mouseDown(e) {
   console.log('mousedown');
   canvas.startDrawLine(e)
   $("#canvas").mousemove(function(event) {
@@ -25,7 +43,8 @@ function mouseDown(e){
   });
 
 }
-function mouseUp(e){
+
+function mouseUp(e) {
   console.log('mouseup');
   canvas.endDrawLine()
   $("#canvas").unbind('mousemove');

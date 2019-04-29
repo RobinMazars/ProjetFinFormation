@@ -7,6 +7,15 @@ class Canvas {
   drawLine(event) {
 
   }
+  eraserOn(){
+    this.ctx.globalCompositeOperation = 'destination-out';
+  }
+  eraserOff(){
+    this.ctx.globalCompositeOperation = 'source-over';
+  }
+  clearAll(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
   startDrawLine(event) {
     this.ctx.beginPath();
     this.ctx.lineWidth = this.pen.getWidth();

@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
   <link rel="stylesheet" href="./../../css/normalize.css">
   <link rel="stylesheet" href="./../../css/master.css">
+  <link rel="stylesheet" href="./../../css/jsGame/jsGame.css">
   <!--class-->
   <script src="./../../js/jsGame/jsClass/circle.class.js" charset="utf-8"></script>
   <script src="./../../js/jsGame/jsClass/canvas.class.js" charset="utf-8"></script>
@@ -18,13 +19,11 @@
   <!--  -->
 </head>
   <body>
-    <?php include './../../inc/http.inc.php'; ?>
-    <?php include './../../inc/header.inc.php'; ?>
-      <canvas id="canvas" width="700" height="700">
+    <?php include './../../inc/http.inc.php';
+     include './../../inc/header.inc.php';
+     include './jsGameView.html';
 
-      </canvas>
-      <input type="color" id="color" value="#000000">
-    <?php include './../../inc/footer.inc.php'; ?>
+    include './../../inc/footer.inc.php'; ?>
     <script src="./../../js/jsGame/jsGame.js" charset="utf-8"></script>
     <script src="./../../js/main.js" charset="utf-8"></script>
   </body>
