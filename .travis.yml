@@ -3,4 +3,4 @@ php:
   - 7.2.4
 script:
    - composer install
-   - vendor/bin/phpunit
+   - vendor/bin/phpunit tests
