@@ -1,0 +1,4 @@
+To Do:
+- complete config.php and move on root
+- install BDD
+- update composer: composer.phar update
