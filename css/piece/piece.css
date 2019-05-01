@@ -25,7 +25,7 @@
   transform-style: preserve-3d;
 }
 #frame:hover #piece {
-  animation: rotate linear forwards 5s alternate;
+  animation: rotate linear forwards 1.5s alternate;
 }
 .piecePart {
   height: 400px;
@@ -86,12 +86,12 @@
 }
 #pieceFace2 {
   z-index: 0;
-  transition: background-color 5s cubic-bezier(1, 0, 0, 1), transform 5s linear;
+  transition: background-color 2s cubic-bezier(1, 0, 0, 1), transform 2s linear;
   background-color: gold;
 }
 #piecePile2 {
   z-index: 0;
-  transition: background-color 5s cubic-bezier(1, 0, 0, 1), transform 5s linear;
+  transition: background-color 2s cubic-bezier(1, 0, 0, 1), transform 2s linear;
   background-color: #ff0000;
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
