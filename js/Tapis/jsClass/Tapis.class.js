@@ -30,7 +30,7 @@ class Tapis extends AbstractObject {
     return ['forward','left','right']
   }
   static nextType(type){
-    var liste = Tapis.listeNameDef()
+    var liste = this.listeNameDef()
     //console.log(liste);
     //console.log(type);
     var index = liste.indexOf(type)
@@ -38,15 +38,6 @@ class Tapis extends AbstractObject {
     var nextType =liste[(index+1)%liste.length ];
     return nextType
 
-  }
-  static getClassName(){
-    return 'Tapis'
-  }
-  getClassNameFromObject(){
-    return 'Tapis'
-  }
-  getClass(){
-    return Tapis
   }
   setSvg(){
     //console.log(this.type);

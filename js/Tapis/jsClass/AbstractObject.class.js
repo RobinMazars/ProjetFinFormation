@@ -16,13 +16,22 @@ class AbstractObject {
     return false
   }
   idMyself() {
-    if (AbstractObject.id == undefined) {
-      AbstractObject.id = 1;
+    if (this.constructor.id == undefined) {
+      this.constructor.id = 1;
     } else {
-      AbstractObject.id++;
+      this.constructor.id++;
     }
-    //console.log(AbstractObject.id);
-    this.id = AbstractObject.id;
+    //console.log(this.constructor.id);
+    this.id = this.constructor.id;
+  }
+  static getClassName(){
+    return this.name
+  }
+  getClassNameFromObject(){
+    return this.constructor.name
+  }
+  getClass(){
+    return this.constructor
   }
   setSvg(idDef) {
     var width = 50;
