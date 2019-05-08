@@ -105,11 +105,18 @@ class EventController {
     this.bindAllSaveLoadButtons()
   }
   bindOnCLick() {
+    console.log("bindOnCLick");
     var self = this // HACK:
     $("#frame").mousedown(function(event) {
       //console.log("bind");
       self.onClick(event)
     });
+  }
+  unbindOnCLick(){
+    console.log("unbindOnCLick");
+    var self = this
+    $("#frame").off("mousedown");
+
   }
   getPosMouse(e) {
     var container = document.getElementById('frame')
@@ -130,6 +137,7 @@ class EventController {
     this.manipulator.placeObject(this.manipulator.selected, pos)
   }
   animRepeat(){
+    self.unbindOnCLick()
     $("#start").unbind('click')
     $("#oneStep").unbind('click')
     self.unbindAllSaveLoadButton()
@@ -148,6 +156,7 @@ class EventController {
 
   }
   stopAnim(){
+    self.bindOnCLick()
     $("#stop").unbind('click')
     clearInterval(self.loop)
     $("#start").click(self.animRepeat);
