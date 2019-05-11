@@ -10,15 +10,32 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./../../css/Bdd/Bdd.css">
 
 <?php
+$nbrPage=5;
+if (isset($_GET['page'])) {
+  $page=(int)htmlspecialchars($_GET['page']);
+  $offset=($page-1)*$nbrPage;
+}
+else {
+  $page=1;
+  $offset=0;
+  //// TODO: redirection vers ?page=0 a faire dans le controller
+}
 if (!isset($_GET['page'])) {
-  header('Location: BddController.php?page=1');
+  $page=1;
 }
  include './../../inc/http.inc.php';
  include './../../inc/header.inc.php';
- include './model/Bdd.model.php';
 
-
- include './view/Bdd.php';
+if (isset($_POST['recherche'])) {
+  $recherche=$_POST['recherche'] ;// TODO: escape
+  include './model/BddResearch.model.php';
+  $PaginationEnable = false;
+}
+else {
+  include './model/Bdd.model.php';
+  $PaginationEnable = true;
+}
+include './view/Bdd.php';
  include './../../inc/footer.inc.php';
 
 

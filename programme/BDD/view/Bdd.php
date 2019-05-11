@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <title>BDD</title>
-  </head>
+<?=$sql ?>
   <body>
     <section>
       <h2>Tableaux</h2>
+
+      <form id="rechercheBar" action="./BddController.php" method="post">
+        <label for="recherche">Rechercher un produit:   </label>
+        <input type="text" name="recherche" value="" required>
+        <input type="submit" name="submitRecherche" value="Enter">
+      </form>
     <?php if ($allProduct) {
+      if ($PaginationEnable){
+        include 'view/pagination.html';
+      }
+      else {
+        ?>
+        <a href="./BddController.php">Effacer recherche</a>
+        <?php
+      }
+
     ?>
-      <?php include 'view/pagination.html'; ?>
+
      <table>
          <th>Nom du produit</th>
          <th>Nom du fourniseur</th>
@@ -33,29 +43,35 @@
 } else {
         ?>
      <p>Pas de produit trouvé</p>
+     <a href="./BddController.php">Retour</a>
    <?php
     } ?>
-<?php include 'view/pagination.html'; ?>
+<?php if ($PaginationEnable) {
+  include 'view/pagination.html';
+} ?>
 </section>
-<section>
-<h2>Informations suplémentaires</h2>
-<table>
-  <thead>
-    <th>Nombre de produit en vente</th>
-    <th>Prix moyen</th>
-  </thead>
-<tbody>
-  <tr>
-  <?php foreach ($info as $key => $value): ?>
-    <td><?=$value ?></td>
-  <?php endforeach; ?>
-</tr>
-</tbody>
+<?php if(isset($info)): ?>
+  <section>
+  <h2>Informations suplémentaires</h2>
+  <table>
+    <thead>
+      <th>Nombre de produit en vente</th>
+      <th>Prix moyen</th>
+    </thead>
+  <tbody>
+    <tr>
+    <?php foreach ($info as $key => $value): ?>
+      <td><?=$value ?></td>
+    <?php endforeach; ?>
+  </tr>
+  </tbody>
 
-</table>
-</section>
+  </table>
+  </section>
+
+<?php endif; ?>
+
 <section>
   Explication
 </section>
   </body>
-</html>

@@ -23,6 +23,7 @@ th {
 
 td {
   border: 1px black solid;
+  padding: 0 10px;
 }
 
 tr:nth-child(odd) {
@@ -31,4 +32,7 @@ tr:nth-child(odd) {
 
 tr:nth-child(even) {
   background: lightgrey;
+}
+#rechercheBar{
+  margin: 2% 0;
 }
